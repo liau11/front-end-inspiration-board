@@ -45,6 +45,14 @@ const NewBoardForm = (props) => {
                 onChange={handleChange}
             />
             <input type="submit" value="Add an owner" />
+            <label htmlFor="preview">Preview: </label>
+            <input className="preview"
+                type='text'
+                id='message'
+                name='message'
+                value=
+                onChange={handleChange}
+            />
         </form>
     )
 
