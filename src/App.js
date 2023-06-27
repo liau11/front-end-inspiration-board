@@ -27,8 +27,6 @@ function App() {
       <Board sampleBoardData={sampleBoardData} />
       <h2>Create A New Board</h2>
       <NewBoardForm createNewBoard={createNewBoard} />
-      <h2>Boards</h2>
-      <h2>Create A New Board</h2>
       <div className="Card-Form">
         <h2>Create a New Card</h2>
         <NewCardForm createNewCard={createNewCard} />
