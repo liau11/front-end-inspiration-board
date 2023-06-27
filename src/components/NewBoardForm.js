@@ -9,6 +9,7 @@ const DEFAULT_FORM = {
 
 const NewBoardForm = (props) => {
     const [boardFormData, setBoardFormData] = useState(DEFAULT_FORM);
+    const [hideBoardForm, setHideBoardForm] = useState(false);
 
     const handleChange = (event) => {
         console.log(event.target.name)
@@ -35,7 +36,6 @@ const NewBoardForm = (props) => {
                 value={boardFormData.title}
                 onChange={handleChange}
             />
-            <input type="submit" value="Add a title" />
             <label htmlFor="owner_name">Owner's name</label>
             <input
                 type='text'
@@ -44,16 +44,17 @@ const NewBoardForm = (props) => {
                 value={boardFormData.owner_name}
                 onChange={handleChange}
             />
-            <input type="submit" value="Add an owner" />
-            <label htmlFor="preview">Preview: </label>
+            <input type="submit" value="Submit" />
+            <label htmlFor="preview">Preview Your Message Here</label>
             <input className="preview"
                 type='text'
                 id='message'
                 name='message'
-                value=
+                value={`${boardFormData.title}: ${boardFormData.owner_name}`}
                 onChange={handleChange}
             />
         </form>
+
     )
 
 }
