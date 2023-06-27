@@ -1,6 +1,9 @@
 .App {
   text-align: center;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  background: #F5EBEB;
 }
+
 
 .App-logo {
   height: 40vmin;
