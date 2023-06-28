@@ -59,6 +59,7 @@ const NewBoardForm = (props) => {
 
 }
 
+
 NewBoardForm.propTypes = {
     createNewBoard: PropTypes.func.isRequired,
 }
