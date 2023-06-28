@@ -12,6 +12,7 @@ const DEFAULT_FORM = {
 
 const NewBoardForm = (props) => {
     const [boardFormData, setBoardFormData] = useState(DEFAULT_FORM);
+    const [hideBoardForm, setHideBoardForm] = useState(false);
 
     const handleChange = (event) => {
         console.log(event.target.name)
@@ -69,6 +70,7 @@ const NewBoardForm = (props) => {
             <input type="submit" value="submit" />
 
         </form>
+
     )
 
 }
