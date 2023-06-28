@@ -1,3 +1,9 @@
 .card {
-    border: 1px solid;
+    background-color: rgb(239, 239, 120);
+    box-shadow: 10px 10px 10px gray;
+}
+
+.delete-button {
+    display: flex;
+    justify-content: flex-end;
 }
