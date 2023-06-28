@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
@@ -29,8 +28,6 @@ const BOARDS_DATA = [
     owner_name: 'Niambi'
   },
 ]
-
-
 
 const CARDS_DATA = [
   {
@@ -68,9 +65,16 @@ function App() {
     console.log(cardData)
   }
 
+  const deleteCard = (cardId) => {
+    const newCardData = cardData.filter(
+      (card) => card.card_id !== cardId
+    )
+    setCardData(newCardData);
+  };
+
   const updateLike = (updatedCard) => {
     const updatedData = cardData.map(card => {
-      if (card.card_id == updatedCard.card_id) {
+      if (card.card_id === updatedCard.card_id) {
         return updatedCard;
       } else {
         return card
@@ -84,7 +88,7 @@ function App() {
       <h1>Inspiration Board</h1>
       <h2>Boards</h2>
       <Board boardData={BOARDS_DATA} />
-      <CardList cards={cardData} updateLike={updateLike} />
+      <CardList cards={cardData} updateLike={updateLike} deleteCard={deleteCard} />
       <h2>Create A New Board</h2>
       <NewBoardForm createNewBoard={createNewBoard} setBoardData={setBoardData} />
       <div className="Card-Form">

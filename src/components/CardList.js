@@ -3,9 +3,9 @@ import Card from './Card';
 import './CardList.css';
 
 // Testing data
-const board_id = 2
+const board_id = 1
 
-const CardList = ({ cards, updateLike }) => {
+const CardList = ({ cards, updateLike, deleteCard }) => {
     const allCards = cards.map((card) => {
         if (card.board_id === board_id) {
             return (
@@ -16,6 +16,7 @@ const CardList = ({ cards, updateLike }) => {
                     message={card.message}
                     likes={card.likes}
                     updateLike={updateLike}
+                    deleteCard={deleteCard}
                 />
             );
         }
@@ -31,7 +32,9 @@ const CardList = ({ cards, updateLike }) => {
 
 
 CardList.propTypes = {
-    cards: PropTypes.array.isRequired
+    cards: PropTypes.array.isRequired,
+    updateLike: PropTypes.func,
+    deleteCard: PropTypes.func
 }
 
 
