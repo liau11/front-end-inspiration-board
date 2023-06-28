@@ -8,22 +8,25 @@ import CardList from './components/CardList';
 
 
 const BOARDS_DATA = [
-  { board_id: 1,
+  {
+    board_id: 1,
     title: 'Flowers',
     owner_name: 'Lily'
   },
-  { board_id: 2,
+  {
+    board_id: 2,
     title: 'Books',
     owner_name: 'Lily'
   },
-  { board_id: 3,
+  {
+    board_id: 3,
     title: 'Beets, Bears, & BattleStar Galatica',
     owner_name: 'Niambi'
   },
-  { 
+  {
     board_id: 4,
-    title: 'Byeee', 
-    owner_name: 'Niambi' 
+    title: 'Byeee',
+    owner_name: 'Niambi'
   },
 ]
 
@@ -70,8 +73,6 @@ function App() {
       <h1>Inspiration Board</h1>
       <h2>Boards</h2>
       <Board boardData={BOARDS_DATA} />
-      <h2>Selected Board</h2>
-      <Board selected_board={boardData.board_id} />
       <CardList cards={cardData} />
       <h2>Create A New Board</h2>
       <NewBoardForm createNewBoard={createNewBoard} setBoardData={setBoardData} />

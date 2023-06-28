@@ -1,12 +1,21 @@
 
 
-const Board = ({ sampleBoardData }) => {
+const Board = ({ boardData }) => {
+
     return (
-        <ol>
-            {sampleBoardData.map((board) => (
-                <li>{board.title}</li>
-            ))}
-        </ol>
+        <section>
+            <div className="board">
+                <ol>
+                    {boardData.map((board) => (
+                        <li>{board.title}</li>
+                    ))}
+                </ol>
+            </div>
+            <div>
+                <h2>Selected Board</h2>
+            </div>
+        </section>
+
     )
 };
 
