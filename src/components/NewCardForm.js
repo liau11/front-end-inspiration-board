@@ -22,7 +22,7 @@ const NewCardForm = (props) => {
     }
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        props.createNewCard(cardFormData);
+        props.addNewCard(cardFormData);
         setCardFormData(DEFAULT_CARD_FORM);
     }
 
