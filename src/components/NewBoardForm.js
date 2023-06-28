@@ -1,10 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import './NewBoardForm.js';
+import './NewBoardForm.css';
+
 
 const DEFAULT_FORM = {
     title: '',
-    owner_name: ''
+    owner_name: '',
+    preview: '', 
+    preview_2: ''
 };
 
 const NewBoardForm = (props) => {
@@ -35,7 +38,18 @@ const NewBoardForm = (props) => {
                 value={boardFormData.title}
                 onChange={handleChange}
             />
-            <input type="submit" value="Add a title" />
+            {/* <input type="submit" value="Add an owner" /> */}
+
+            <label htmlFor="preview">Preview:</label>
+            <input className="preview"
+                type='text'
+                id='message'
+                name='message'
+                value={boardFormData.title}
+                onChange={handleChange}
+            />
+
+            {/* <input type="submit" value="Add a title" /> */}
             <label htmlFor="owner_name">Owner's name</label>
             <input
                 type='text'
@@ -44,15 +58,16 @@ const NewBoardForm = (props) => {
                 value={boardFormData.owner_name}
                 onChange={handleChange}
             />
-            <input type="submit" value="Add an owner" />
-            <label htmlFor="preview">Preview: </label>
-            <input className="preview"
+            <label htmlFor="preview_2">Preview:</label> 
+            <input className="preview_2"
                 type='text'
                 id='message'
                 name='message'
-                value=
+                value={boardFormData.owner_name}
                 onChange={handleChange}
             />
+            <input type="submit" value="submit" />
+
         </form>
     )
 
