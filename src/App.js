@@ -68,12 +68,23 @@ function App() {
     console.log(cardData)
   }
 
+  const updateLike = (updatedCard) => {
+    const updatedData = cardData.map(card => {
+      if (card.card_id == updatedCard.card_id) {
+        return updatedCard;
+      } else {
+        return card
+      }
+    });
+    setCardData(updatedData)
+  };
+
   return (
     <div className="App">
       <h1>Inspiration Board</h1>
       <h2>Boards</h2>
       <Board boardData={BOARDS_DATA} />
-      <CardList cards={cardData} />
+      <CardList cards={cardData} updateLike={updateLike} />
       <h2>Create A New Board</h2>
       <NewBoardForm createNewBoard={createNewBoard} setBoardData={setBoardData} />
       <div className="Card-Form">

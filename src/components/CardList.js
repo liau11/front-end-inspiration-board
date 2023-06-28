@@ -3,7 +3,7 @@ import Card from './Card';
 import './CardList.css';
 
 
-const CardList = ({ cards }) => {
+const CardList = ({ cards, updateLike }) => {
     const allCards = cards.map((card) => {
         return (
             < Card
@@ -12,6 +12,7 @@ const CardList = ({ cards }) => {
                 boardId={card.board_id}
                 message={card.message}
                 likes={card.likes}
+                updateLike={updateLike}
             />
         );
     });

@@ -2,8 +2,19 @@ import PropTypes from 'prop-types';
 import './Card.css';
 
 
-const Card = ({ cardId, boardId, message, likes }) => {
+const Card = ({ cardId, boardId, message, likes, updateLike }) => {
     console.log(message)
+
+    const onLikeButtonClick = () => {
+        const updatedCard = {
+            'board_id': boardId,
+            'card_id': cardId,
+            'message': message,
+            'likes': likes + 1
+        }
+        updateLike(updatedCard);
+    }
+
 
     return (
         <section className='card'>
@@ -12,8 +23,8 @@ const Card = ({ cardId, boardId, message, likes }) => {
             </h2 >
             <div>
                 <div>
-                    {likes}
-                    <button>
+                    {likes} ♡
+                    <button onClick={onLikeButtonClick}>
                         + 1
                     </button>
                 </div>
