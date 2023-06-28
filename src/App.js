@@ -7,24 +7,25 @@ import { useState } from 'react';
 import CardList from './components/CardList';
 
 
-const boardData = [
+const BOARDS_DATA = [
   { board_id: 1,
     title: 'Flowers',
-    owner_name: 'Lily',
+    owner_name: 'Lily'
   },
   { board_id: 2,
     title: 'Books',
-    owner_name: 'Lily',
+    owner_name: 'Lily'
   },
   { board_id: 3,
     title: 'Beets, Bears, & BattleStar Galatica',
-    owner_name: 'Niambi',
+    owner_name: 'Niambi'
   },
   { 
     board_id: 4,
     title: 'Byeee', 
-    owner_name: 'Niambi' },
-  ]
+    owner_name: 'Niambi' 
+  },
+]
 
 
 
@@ -51,12 +52,12 @@ const CARDS_DATA = [
 
 function App() {
 
-  const [newboardData, setBoardData] = useState(boardData)
+  const [boardData, setBoardData] = useState(BOARDS_DATA)
   const [cardData, setCardData] = useState(CARDS_DATA)
 
   const createNewBoard = (newBoard) => {
-    setBoardData()
-    console.log(newboardData)
+    setBoardData([...boardData, newBoard])
+    console.log(boardData)
   }
 
   const addNewCard = (newCard) => {
@@ -68,8 +69,9 @@ function App() {
     <div className="App">
       <h1>Inspiration Board</h1>
       <h2>Boards</h2>
-      <Board sampleBoardData={boardData} />
+      <Board boardData={BOARDS_DATA} />
       <h2>Selected Board</h2>
+      <Board selected_board={boardData.board_id} />
       <CardList cards={cardData} />
       <h2>Create A New Board</h2>
       <NewBoardForm createNewBoard={createNewBoard} setBoardData={setBoardData} />
