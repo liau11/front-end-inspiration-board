@@ -1,18 +1,13 @@
 import PropTypes from 'prop-types';
 import './Card.css';
+import { useState } from 'react';
 
 
 const Card = ({ cardId, boardId, message, likes, updateLike, deleteCard }) => {
-    console.log(message)
 
     const onLikeButtonClick = () => {
-        const updatedCard = {
-            'board_id': boardId,
-            'card_id': cardId,
-            'message': message,
-            'likes': likes + 1
-        }
-        updateLike(updatedCard);
+        const updatedLikeCount = likes + 1
+        updateLike(cardId, updatedLikeCount);
     }
 
 

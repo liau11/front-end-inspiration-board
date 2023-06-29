@@ -2,27 +2,35 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import './NewCardForm.css';
 
-const DEFAULT_CARD_FORM = {
-    message: '',
-    // preview: '',
-};
 
-const NewCardForm = (props) => {
+// test data
+const selected_boardId = 2
+const cardddd_id = 34
+
+const NewCardForm = ({ addNewCard }) => {
+
+    const DEFAULT_CARD_FORM = {
+        board_id: null,
+        message: "",
+        likes: 0,
+        card_id: Math.random(0, 1)
+    }
 
     const [cardFormData, setCardFormData] = useState(DEFAULT_CARD_FORM);
 
     const handleChange = (event) => {
-        console.log(event.target.name)
-
         const newCardData = {
             ...cardFormData,
+            board_id: selected_boardId,
+            card_id: Math.random(0, 1),
             [event.target.name]: event.target.value
         }
         setCardFormData(newCardData);
+        console.log(cardFormData)
     }
     const handleFormSubmit = (event) => {
         event.preventDefault();
-        props.addNewCard(cardFormData);
+        addNewCard(cardFormData);
         setCardFormData(DEFAULT_CARD_FORM);
     }
 
@@ -37,7 +45,7 @@ const NewCardForm = (props) => {
                 onChange={handleChange}
             />
             <input type="submit" value="submit" />
-            <label htmlFor="preview">Preview Your Message Here</label>
+            <label htmlFor="preview">Preview: </label>
             <input className="preview"
                 type='text'
                 id='message'
@@ -51,7 +59,7 @@ const NewCardForm = (props) => {
 }
 
 NewCardForm.propTypes = {
-    createNewCard: PropTypes.func.isRequired,
+    addNewCard: PropTypes.func.isRequired,
 }
 
 export default NewCardForm;

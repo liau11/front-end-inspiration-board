@@ -57,12 +57,12 @@ function App() {
 
   const createNewBoard = (newBoard) => {
     setBoardData([...boardData, newBoard])
-    console.log(boardData)
+    // console.log(boardData)
   }
 
   const addNewCard = (newCard) => {
     setCardData([...cardData, newCard])
-    console.log(cardData)
+    // console.log(cardData)
   }
 
   const deleteCard = (cardId) => {
@@ -72,29 +72,37 @@ function App() {
     setCardData(newCardData);
   };
 
-  const updateLike = (updatedCard) => {
+  const updateLike = (cardId, likeCount) => {
     const updatedData = cardData.map(card => {
-      if (card.card_id === updatedCard.card_id) {
-        return updatedCard;
+      if (card.card_id === cardId) {
+        return {
+          ...card,
+          likes: likeCount
+        };
       } else {
         return card
       }
     });
     setCardData(updatedData)
+    console.log(cardData)
   };
 
   return (
     <div className="App">
       <h1>Inspiration Board</h1>
-      <h2>Boards</h2>
-      <Board boardData={BOARDS_DATA} />
-      <CardList cards={cardData} updateLike={updateLike} deleteCard={deleteCard} />
-      <h2>Create A New Board</h2>
-      <NewBoardForm createNewBoard={createNewBoard} setBoardData={setBoardData} />
-      <div className="Card-Form">
-        <h2>Create a New Card</h2>
-        <NewCardForm addNewCard={addNewCard} />
-      </div>
+      <section>
+        <h2>Boards</h2>
+        <Board boardData={boardData} />
+        <CardList cards={cardData} updateLike={updateLike} deleteCard={deleteCard} />
+      </section>
+      <section className='form-section'>
+        <h2>Create A New Board</h2>
+        <NewBoardForm createNewBoard={createNewBoard} setBoardData={setBoardData} />
+        <div className="Card-Form">
+          <h2>Create a New Card</h2>
+          <NewCardForm addNewCard={addNewCard} />
+        </div>
+      </section>
     </div>
   );
 }
