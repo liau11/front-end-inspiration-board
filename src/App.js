@@ -1,9 +1,12 @@
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
 import './App.css';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import Board from './components/BoardList';
-import { useState } from 'react';
 import CardList from './components/CardList';
+
 
 
 const BOARDS_DATA = [
@@ -52,39 +55,67 @@ const CARDS_DATA = [
 
 function App() {
 
-  const [boardData, setBoardData] = useState(BOARDS_DATA)
+  const [boardData, setBoardData] = useState([])
   const [cardData, setCardData] = useState(CARDS_DATA)
 
-  const createNewBoard = (newBoard) => {
-    setBoardData([...boardData, newBoard])
-    // console.log(boardData)
+
+  const populateBoards = () => {
+    axios.get(`http://127.0.0.1:5000/boards`)
+    .then((response) => {
+      const boardData = [];
+      response.data.forEach((board) => {
+        boardData.push(board);
+      });
+      setBoardData(BOARDS_DATA);
+    })
+    .catch((error) => {
+        console.log("error: " , error);
+    })
+  
   }
 
-//   const deleteBoard = (boardId) => {
-//     axios.get(`http://127.0.0.1:5000/boards/${boardId}`)
-//     .then((response) => {
-//       const deleteBoards = boards.map((board) => {
-//         if (board_id !== boardId) {
-//           return {...board};
-//         }
-//   } );
-//   // taken from https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
-//   const filteredUpdatedData = updatedAnimals.filter(function (element) {
-//   return element !== undefined;
-// });
+    useEffect( () => {
+    populateBoards();
+  }, []);
 
-// setAnimals(filteredUpdatedData);
-// })
-// .catch((error) => {
-// // if it's not successful, print out error details for now
-// console.log('could not delete animal', error, error.response);
-// });
-// }
+  const deleteBoard = (boardId) => {
+    axios.delete(`http://127.0.0.1:5000/boards/${boardId}`)
+      .then((response) => {
+        const updatedBoards = boardData.map((board) => {
+          if (board.id !== boardId) {
+            return { ...board };
+          }
+        });
 
+        // taken from https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
+        const filteredUpdatedData = updatedBoards.filter(function (element) {
+          return element !== undefined;
+        });
 
-//   const deleteAllBoards = (updatedBoards) => {
-//   // const updatedBoardList = boardData.
-//   }
+        setBoardData(filteredUpdatedData);
+      })
+      .catch((error) => {
+        console.log('error', error, error.response);
+      });
+  }
+
+  const createNewBoard = (newBoard) => {
+    const updateNewBoardInfo = {
+      ...newBoard,
+      "board_id": null
+  }
+  axios
+    .post(`http://127.0.0.1:5000/boards/<board_id>`, updateNewBoardInfo)
+    .then(() => {
+      const newBoardsArray = [...boardData];
+      newBoardsArray.push(newBoard);
+      setBoardData(newBoardsArray)
+
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  } 
 
   const addNewCard = (newCard) => {
     setCardData([...cardData, newCard])
@@ -116,26 +147,14 @@ function App() {
   return (
     <div className="App">
       <h1>Inspiration Board</h1>
-      <section>
-        <h2>Boards</h2>
-        <Board boardData={boardData} />
-        <CardList cards={cardData} updateLike={updateLike} deleteCard={deleteCard} />
-      </section>
-      <section className='form-section'>
-        <h2>Create A New Board</h2>
-        <NewBoardForm createNewBoard={createNewBoard} setBoardData={setBoardData} />
-        <div className="Card-Form">
-          <h2>Create a New Card</h2>
-          <NewCardForm addNewCard={addNewCard} />
-        </div>
-      </section>
-    </div>
       <h2>Boards</h2>
       <Board className="board-data"
-      boards={BOARDS_DATA} 
-      // deleteBoard={deleteBoard}
+      boards={BOARDS_DATA}
+      deleteBoard={deleteBoard}
       />
-      <SelectedBoard
+      {/* <SelectedBoard
+      
+      /> */}
       <CardList 
       cards={cardData} 
       updateLike={updateLike} 
