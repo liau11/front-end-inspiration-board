@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'Waiting for the Sunrise';
   background: rgb(145, 127, 179);
 }
 
@@ -35,16 +35,17 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
-h2 {
 
-}
+h2 {}
+
 .board-list-container {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   min-height: 9rem;
   overflow: scroll;
@@ -52,14 +53,14 @@ h2 {
   margin-left: 3rem;
   font-size: 15px;
   border: 3px solid #1D267D;
-  background-color:#D4ADFC;
+  background-color: #D4ADFC;
 }
 
 .selected-board-section {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  max-height: 9rem; 
+  max-height: 9rem;
   min-height: 9rem;
   overflow: scroll;
   margin-right: 15rem;
@@ -76,9 +77,11 @@ h2 {
   height: 300px;
   width: 230px;
 }
+
 .delete-button {
   align-content: center;
 }
+
 BOARDS_DATA {
   ;
 }

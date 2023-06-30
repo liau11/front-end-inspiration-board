@@ -2,34 +2,26 @@ import PropTypes from 'prop-types';
 import './Board.css';
 
 
-const Board = ({board_id , title, owner_name}) => {
-    console.log(title, owner_name) 
+const Board = ({ boardId, title, owner, selectBoardIdCallback }) => {
 
     return (
         <section>
-            <div>
-                    <ul>
-                        <li>
-                            <a href="#">
-                            <h2>Title</h2>
-                        </a>
-                        </li>
-                        <li>
-                        <a href="#">
-                            <h2>Owner</h2>
-                        </a>
-                        </li>
-                    </ul>
-                / >
+            <div className='currentBoard' onClick={() => selectBoardIdCallback({ "boardId": { boardId }, "title": { title }, "owner": { owner } })}>
+                {`${title}: ${owner}`}
             </div>
+            {/* <h2>Selected Board</h2> */}
+            {/* <div className="selected-board-section">
+                <p>Title: Owner</p>
+            </div>  */}
         </section>
     );
 
 }
 
 Board.propTypes = {
+    boardId: PropTypes.number,
     title: PropTypes.string,
-    owner_name: PropTypes.string
+    owner: PropTypes.string
 };
 
 export default Board;

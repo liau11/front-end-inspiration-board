@@ -1,37 +1,37 @@
-import {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import './Board'
-import './NewBoardForm.js';
+import Board from './Board';
+import NewBoardForm from './NewBoardForm';
 
+const BoardList = ({ boards, deleteAllBoards }) => {
+    const allBoards = boards.map((board) => (
+        <Board
+            key={board.board_id}
+            boardId={board.board_id}
+            owner={board.owner}
+            title={board.title}
+        />
+    ));
 
-const BoardList = ({ boards }) => {
     return (
-            <section>
-                <div >
-                {/* <h2>Boards</h2> */}
+        <section>
+            <div>
                 <div>
                     <ol className="board-list-container">
-                        {boards.map((board) => (
-                            <li className="board_list-content">{board.title} - {board.owner_name}</li>
-                        ))}
+                        {allBoards}
                     </ol>
                 </div>
-                    <h2>Selected Board</h2>
-                    <div className="selected-board-section">
-                    <p>Title: Owner</p>
-                    </div>
-                <div className="delete-button">
-                    <button>Delete All Boards</button>
-                </div>
-                </div>
-            </section>
-    )
+                {/* <div className="delete-button">
+                    <button onClick={deleteAllBoards}>Delete All Boards</button>
+                </div> */}
+            </div>
+        </section>
+    );
 };
 
 BoardList.propTypes = {
+    boards: PropTypes.arrayOf(PropTypes.object).isRequired,
     deleteAllBoards: PropTypes.func.isRequired,
-
-}
+};
 
 export default BoardList;
-

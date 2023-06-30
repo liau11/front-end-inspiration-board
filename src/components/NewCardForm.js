@@ -4,9 +4,9 @@ import './NewCardForm.css';
 
 
 // test data
-const selected_boardId = 1
+// const selected_boardId = 1
 
-const NewCardForm = ({ addNewCard }) => {
+const NewCardForm = ({ addNewCard, selectedBoardId }) => {
 
     const DEFAULT_CARD_FORM = {
         board_id: null,
@@ -20,7 +20,7 @@ const NewCardForm = ({ addNewCard }) => {
     const handleChange = (event) => {
         const newCardData = {
             ...cardFormData,
-            board_id: selected_boardId,
+            board_id: selectedBoardId,
             card_id: Math.random(0, 1),
             [event.target.name]: event.target.value
         }

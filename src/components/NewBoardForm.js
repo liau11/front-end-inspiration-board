@@ -2,14 +2,14 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import './NewBoardForm.js';
 
-const DEFAULT_FORM = {
-    title: '',
-    owner_name: ''
-};
-
 const NewBoardForm = (props) => {
+    const DEFAULT_FORM = {
+        title: '',
+        owner: ''
+    };
+
     const [boardFormData, setBoardFormData] = useState(DEFAULT_FORM);
-    const [hideBoardForm, setHideBoardForm] = useState(false);
+    // const [hideBoardForm, setHideBoardForm] = useState(false);
 
     const handleChange = (event) => {
         console.log(event.target.name)
@@ -21,8 +21,9 @@ const NewBoardForm = (props) => {
         setBoardFormData(newFormData);
     }
     const handleFormSubmit = (event) => {
+        console.log(boardFormData)
         event.preventDefault();
-        props.createNewBoard(boardFormData);
+        props.createNewBoardCallback(boardFormData);
         setBoardFormData(DEFAULT_FORM);
     }
 
@@ -36,12 +37,12 @@ const NewBoardForm = (props) => {
                 value={boardFormData.title}
                 onChange={handleChange}
             />
-            <label htmlFor="owner_name">Owner's name</label>
+            <label htmlFor="owner">Owner's name</label>
             <input
                 type='text'
-                id='owner_name'
-                name='owner_name'
-                value={boardFormData.owner_name}
+                id='owner'
+                name='owner'
+                value={boardFormData.owner}
                 onChange={handleChange}
             />
             <input type="submit" value="Submit" />
@@ -50,7 +51,7 @@ const NewBoardForm = (props) => {
                 type='text'
                 id='message'
                 name='message'
-                value={`${boardFormData.title}: ${boardFormData.owner_name}`}
+                value={`${boardFormData.title}: ${boardFormData.owner}`}
                 onChange={handleChange}
             />
         </form>
@@ -61,7 +62,7 @@ const NewBoardForm = (props) => {
 
 
 NewBoardForm.propTypes = {
-    createNewBoard: PropTypes.func.isRequired,
+    createNewBoardCallback: PropTypes.func.isRequired,
 }
 
 export default NewBoardForm;
