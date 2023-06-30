@@ -61,20 +61,20 @@ function App() {
 
   const populateBoards = () => {
     axios.get(`http://127.0.0.1:5000/boards`)
-    .then((response) => {
-      const boardData = [];
-      response.data.forEach((board) => {
-        boardData.push(board);
-      });
-      setBoardData(BOARDS_DATA);
-    })
-    .catch((error) => {
-        console.log("error: " , error);
-    })
-  
+      .then((response) => {
+        const boardData = [];
+        response.data.forEach((board) => {
+          boardData.push(board);
+        });
+        setBoardData(BOARDS_DATA);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      })
+
   }
 
-    useEffect( () => {
+  useEffect(() => {
     populateBoards();
   }, []);
 
@@ -103,19 +103,19 @@ function App() {
     const updateNewBoardInfo = {
       ...newBoard,
       "board_id": null
-  }
-  axios
-    .post(`http://127.0.0.1:5000/boards/<board_id>`, updateNewBoardInfo)
-    .then(() => {
-      const newBoardsArray = [...boardData];
-      newBoardsArray.push(newBoard);
-      setBoardData(newBoardsArray)
+    }
+    axios
+      .post(`http://127.0.0.1:5000/boards/<board_id>`, updateNewBoardInfo)
+      .then(() => {
+        const newBoardsArray = [...boardData];
+        newBoardsArray.push(newBoard);
+        setBoardData(newBoardsArray)
 
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  } 
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
   const addNewCard = (newCard) => {
     setCardData([...cardData, newCard])
@@ -149,31 +149,27 @@ function App() {
       <h1>Inspiration Board</h1>
       <h2>Boards</h2>
       <Board className="board-data"
-      boards={BOARDS_DATA}
-      deleteBoard={deleteBoard}
-      />
-      <NewBoardForm
-      createNewBoard={createNewBoard} 
-      setBoardData={setBoardData} 
-      />
-      {/* <SelectedBoard
-      
-      /> */}
-      <CardList 
-      cards={cardData} 
-      updateLike={updateLike} 
-      deleteCard={deleteCard} 
+        boards={BOARDS_DATA}
+        deleteBoard={deleteBoard}
       />
       <h2>Create A New Board</h2>
-      
-      <div className="Card-Form">
-      <h2>Create a New Card</h2>
-      <NewCardForm 
-      addNewCard={addNewCard} 
+      <NewBoardForm
+        createNewBoard={createNewBoard}
+        setBoardData={setBoardData}
       />
+      <div className="Card-Form">
+        <h2>Create a New Card</h2>
+        <NewCardForm
+          addNewCard={addNewCard}
+        />
+        <CardList
+          cards={cardData}
+          updateLike={updateLike}
+          deleteCard={deleteCard}
+        />
 
       </div>
-      </div>
+    </div>
   );
 }
 
