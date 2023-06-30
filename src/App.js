@@ -55,12 +55,16 @@ function App() {
 
   const [boardData, setBoardData] = useState([])
   const [cardData, setCardData] = useState([])
-  const [selectedBoard, setSelectedBoard] = useState({ "boardId": null, "title": null, "owner": null })
+  const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
+  const [userSelectedBoard, setUserSelectedBoard] = useState(false)
 
-  const selectBoardCallback = (selectedBoard) => {
+
+  const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
+    setUserSelectedBoard(selectedBoard ? true : false)
   }
 
+  const selectedBoardName = userSelectedBoard ? selectedBoard[1] : "Select a Board from the Board List!"
 
   const API_URL = 'https://inspo-board-service.onrender.com';
 
@@ -148,32 +152,41 @@ function App() {
     <div className="App">
       <h1>Inspiration Board</h1>
       <h2>Boards</h2>
-      <Board className="board-data"
+      <Board
+        className="board-data"
         boards={boardData}
-        // deleteBoard={deleteBoard}
-        selectBoardCallback={selectBoardCallback}
+        selectBoardIdCallback={selectBoardIdCallback}
       />
-      <h2>Create A New Board</h2>
-      <NewBoardForm
-        createNewBoardCallback={createNewBoard}
-        setBoardData={setBoardData}
-      />
+      <div>
+        <h2>Create A New Board</h2>
+        <NewBoardForm
+          createNewBoardCallback={createNewBoard}
+          setBoardData={setBoardData}
+        />
+      </div>
+      <div>
+        <h2>Selected Board</h2>
+        {selectedBoardName}
+      </div>
       <div className="Card-Form">
-        <h2>Create a New Card</h2>
-        <NewCardForm
-          addNewCard={addNewCard}
-          selectedBoardId={selectedBoard["boardId"]}
-        />
-        <div>
-          <h2>Selected Board</h2>
-          {selectedBoard}
-        </div>
-        <CardList
-          cards={cardData}
-          updateLike={updateLike}
-          deleteCard={deleteCard}
-        />
-
+        {userSelectedBoard ? (
+          <div>
+            <h2>Create a New Card</h2>
+            <NewCardForm
+              addNewCard={addNewCard}
+              selectedBoardId={selectedBoard[0]}
+            />
+            <CardList
+              cards={cardData}
+              updateLike={updateLike}
+              deleteCard={deleteCard}
+              selectedBoardName={selectedBoardName}
+              selectedBoardId={selectedBoard[0]}
+            />
+          </div>
+        ) : (
+          null
+        )}
       </div>
     </div>
   );

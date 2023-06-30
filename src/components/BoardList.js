@@ -3,13 +3,14 @@ import PropTypes from 'prop-types';
 import Board from './Board';
 import NewBoardForm from './NewBoardForm';
 
-const BoardList = ({ boards, deleteAllBoards }) => {
+const BoardList = ({ boards, deleteAllBoards, selectBoardIdCallback }) => {
     const allBoards = boards.map((board) => (
         <Board
             key={board.board_id}
             boardId={board.board_id}
             owner={board.owner}
             title={board.title}
+            selectBoardIdCallback={selectBoardIdCallback}
         />
     ));
 
