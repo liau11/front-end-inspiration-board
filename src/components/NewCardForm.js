@@ -4,8 +4,7 @@ import './NewCardForm.css';
 
 
 // test data
-const selected_boardId = 2
-const cardddd_id = 34
+const selected_boardId = 1
 
 const NewCardForm = ({ addNewCard }) => {
 
