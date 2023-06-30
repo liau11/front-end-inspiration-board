@@ -152,6 +152,10 @@ function App() {
       boards={BOARDS_DATA}
       deleteBoard={deleteBoard}
       />
+      <NewBoardForm
+      createNewBoard={createNewBoard} 
+      setBoardData={setBoardData} 
+      />
       {/* <SelectedBoard
       
       /> */}
@@ -161,10 +165,7 @@ function App() {
       deleteCard={deleteCard} 
       />
       <h2>Create A New Board</h2>
-      <NewBoardForm
-      createNewBoard={createNewBoard} 
-      setBoardData={setBoardData} 
-      />
+      
       <div className="Card-Form">
       <h2>Create a New Card</h2>
       <NewCardForm 
