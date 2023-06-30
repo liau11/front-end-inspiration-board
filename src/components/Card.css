@@ -1,13 +1,37 @@
 .card {
     background-color: rgb(239, 239, 120);
-    box-shadow: 10px 10px 10px gray;
+    box-shadow: 10px 10px 10px rgb(56, 44, 56);
+    margin: 20px;
 }
 
 .card:hover {
     transform: scale(1.15);
 }
 
+.likeCount {
+    font-size: 23px;
+}
+
 .delete-button {
     display: flex;
     justify-content: flex-end;
+}
+
+.delete-button {
+    border: none;
+    background-color: transparent
+}
+
+.plusOneButton {
+    margin: 10px;
+    background-color: #EA4C89;
+    color: #FFFFFF;
+    border-radius: 7px;
+}
+
+.plusOneButton:hover {
+    background-color: #FFFFFF;
+    color: #EA4C89;
+    cursor: pointer;
+    transition: 0.15s;
 }

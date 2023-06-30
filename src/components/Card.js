@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import './Card.css';
 import { useState } from 'react';
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+import PlusOneOutlinedIcon from '@mui/icons-material/PlusOneOutlined';
 
 
 const Card = ({ cardId, boardId, message, likes, updateLike, deleteCard }) => {
@@ -14,18 +16,18 @@ const Card = ({ cardId, boardId, message, likes, updateLike, deleteCard }) => {
     return (
         <section className='card'>
             <div className='delete-button'>
-                <button onClick={() => deleteCard(cardId)}>
-                    x
+                <button className="delete-button" onClick={() => deleteCard(cardId)}>
+                    <DeleteOutlineOutlinedIcon />
                 </button>
             </div>
             <h2>
                 {message}
             </h2 >
             <div>
-                <div>
+                <div className="likeCount">
                     {likes} ♡
-                    <button onClick={onLikeButtonClick}>
-                        + 1
+                    <button className="plusOneButton" onClick={onLikeButtonClick}>
+                        <PlusOneOutlinedIcon fontSize="small" />
                     </button>
 
                 </div>
