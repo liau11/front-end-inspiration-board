@@ -5,7 +5,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import PlusOneOutlinedIcon from '@mui/icons-material/PlusOneOutlined';
 
 
-const Card = ({ cardId, message, likes, updateLike, deleteCard, selectedBoardId }) => {
+const Card = ({ cardId, message, likes, updateLike, deleteCard }) => {
 
     const onLikeButtonClick = () => {
         const updatedLikeCount = likes + 1
