@@ -1,0 +1,45 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+.board-list {
+    text-align: left;
+}
+body {
+    margin: 20px auto;
+    font-family: 'Lato';
+    background:#666;
+    color:#fff
+}
+
+h2 {
+font-weight: bold;
+font-size: 2rem;
+text-align:center;
+}
+
+ol,li{
+list-style:none;
+text-align: left;
+}
+
+ol{
+display: flex;
+flex-wrap: wrap;
+justify-content:left;
+}
+
+ol li a{
+text-decoration:none;
+color:#000;
+background:#ffc;
+display:block;
+height:10em;
+width:10em;
+padding:1em;
+}
+
+ol li{
+margin:1em;
+}

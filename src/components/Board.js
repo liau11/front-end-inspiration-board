@@ -1,24 +1,35 @@
+import PropTypes from 'prop-types';
+import './Board.css';
 
 
-const Board = ({ boardData }) => {
+const Board = ({board_id , title, owner_name}) => {
+    console.log(title, owner_name) 
 
     return (
         <section>
-            <div className="board">
-                <ol>
-                    {boardData.map((board) => (
-                        <li>{board.title}</li>
-                    ))}
-                </ol>
-            </div>
             <div>
-                <h2>Selected Board</h2>
+                    <ul>
+                        <li>
+                            <a href="#">
+                            <h2>Title</h2>
+                        </a>
+                        </li>
+                        <li>
+                        <a href="#">
+                            <h2>Owner</h2>
+                        </a>
+                        </li>
+                    </ul>
+                / >
             </div>
         </section>
+    );
 
-    )
+}
+
+Board.propTypes = {
+    title: PropTypes.string,
+    owner_name: PropTypes.string
 };
-
-
 
 export default Board;
