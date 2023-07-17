@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Board from './Board';
 import NewBoardForm from './NewBoardForm';
 
-const BoardList = ({ boards, deleteAllBoards, selectBoardIdCallback }) => {
+const BoardList = ({ boards, deleteBoard, selectBoardIdCallback }) => {
     const allBoards = boards.map((board) => (
         <Board
             key={board.board_id}
@@ -22,9 +22,9 @@ const BoardList = ({ boards, deleteAllBoards, selectBoardIdCallback }) => {
                         {allBoards}
                     </ol>
                 </div>
-                {/* <div className="delete-button">
-                    <button onClick={deleteAllBoards}>Delete All Boards</button>
-                </div> */}
+                <div className="delete-button">
+                    <button onClick={deleteBoard}>Delete Board</button>
+                </div>
             </div>
         </section>
     );

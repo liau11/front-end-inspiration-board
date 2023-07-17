@@ -97,26 +97,31 @@ function App() {
       });
   }
 
-  // const deleteBoard = (boardId) => {
-  //   axios.delete(`${API_URL}/${boardId}`)
-  //     .then((response) => {
-  //       const updatedBoards = boardData.map((board) => {
-  //         if (board.id !== boardId) {
-  //           return { ...board };
-  //         }
-  //       });
+  const getCardsInBoard = (boardId) => {
+    //route boards/<board_id>/cards
+    axios.get(`${API_URL}/boards/${boardId}/cards`)
+      .then((response) => {
+        const initialCardsInBoardData = [];
+        response.data.forEach((card) => {
+          initialCardsInBoardData.push(card);
+        });
+        setBoardData(initialCardsInBoardData);
+      })
+      .catch((error) => {
+        console.log("error: ", error);
+      })
+  }
 
-  //       // taken from https://stackoverflow.com/questions/28607451/removing-undefined-values-from-array
-  //       const filteredUpdatedData = updatedBoards.filter(function (element) {
-  //         return element !== undefined;
-  //       });
-
-  //       setBoardData(filteredUpdatedData);
-  //     })
-  //     .catch((error) => {
-  //       console.log('error', error, error.response);
-  //     });
-  // }
+  const deleteBoard = (boardId) => {
+    axios.delete(`${API_URL}/boards/${boardId}`)
+        .then((response) => {
+            const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
+            setBoardData(filteredUpdatedData);
+        })
+        .catch((error) => {
+            console.log('error', error, error.response);
+        });
+};
 
   const addNewCard = (newCard) => {
     axios.post(`${API_URL}/cards`, newCard)
