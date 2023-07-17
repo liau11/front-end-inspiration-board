@@ -58,7 +58,7 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
 
-
+  // here is where onclick send back boardId info
   const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
     setUserSelectedBoard(selectedBoard ? true : false)
@@ -105,18 +105,20 @@ function App() {
         response.data.forEach((card) => {
           initialCardsInBoardData.push(card);
         });
-        setBoardData(initialCardsInBoardData);
+        setCardData(initialCardsInBoardData)
       })
       .catch((error) => {
         console.log("error: ", error);
       })
   }
+  useEffect(getCardsInBoard, []);
 
   const deleteBoard = (boardId) => {
     axios.delete(`${API_URL}/boards/${boardId}`)
         .then((response) => {
             const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
             setBoardData(filteredUpdatedData);
+            console.log('Your board has been successfully deleted!')
         })
         .catch((error) => {
             console.log('error', error, error.response);
@@ -183,6 +185,7 @@ function App() {
             />
             <CardList
               cards={cardData}
+              // pass in all cards from selected board 
               updateLike={updateLike}
               deleteCard={deleteCard}
               selectedBoardName={selectedBoardName}

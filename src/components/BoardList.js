@@ -3,6 +3,9 @@ import PropTypes from 'prop-types';
 import Board from './Board';
 import NewBoardForm from './NewBoardForm';
 
+const deleteMessage = () => {
+    alert('Your board has been deleted');
+};
 const BoardList = ({ boards, deleteBoard, selectBoardIdCallback }) => {
     const allBoards = boards.map((board) => (
         <Board
