@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import Board from './Board';
 import NewBoardForm from './NewBoardForm';
 
-const deleteMessage = () => {
-    alert('Your board has been deleted');
-};
+
+function DeleteBoardButton({ message }) {
+    return (
+        <button onClick={() => alert(message)}>Delete Board</button>
+    );
+}
+
 const BoardList = ({ boards, deleteBoard, selectBoardIdCallback }) => {
     const allBoards = boards.map((board) => (
         <Board
@@ -26,7 +30,7 @@ const BoardList = ({ boards, deleteBoard, selectBoardIdCallback }) => {
                     </ol>
                 </div>
                 <div className="delete-button">
-                    <button onClick={deleteBoard}>Delete Board</button>
+                    <DeleteBoardButton  message="Your board has been deleted!"/>
                 </div>
             </div>
         </section>
