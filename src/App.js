@@ -155,58 +155,6 @@ function App() {
     setCardData(updatedData)
   };
 
-
-  //   return (
-  //     <div className="App">
-  //       <img className="image" src={myGif} alt="My-Jojo-Banner" />
-  //       <h1>Inspiration Board</h1>
-  //       <h2>BOARDS</h2>
-  //       <Board
-  //         className="board-data"
-  //         boards={boardData}
-  //         selectBoardIdCallback={selectBoardIdCallback}
-  //       />
-  //       <div>
-  //         <h2>CREATE A NEW BOARD</h2>
-  //         <NewBoardForm
-  //           createNewBoardCallback={createNewBoard}
-  //           setBoardData={setBoardData}
-  //         />
-  //       </div>
-  //       <div>
-  //         <h2>SELECTED BOARD</h2>
-  //         {selectedBoardName}
-  //       </div>
-  //       <div className="Card-Form">
-  //         {userSelectedBoard ? (
-  //           <div>
-  //             <h2>CREATE A NEW CARD</h2>
-  //             <NewCardForm
-  //               addNewCard={addNewCard}
-  //               selectedBoardId={selectedBoard[0]}
-  //             />
-  //             <CardList
-  //               cards={cardData}
-  //               // pass in all cards from selected board 
-  //               updateLike={updateLike}
-  //               deleteCard={deleteCard}
-  //               selectedBoardName={selectedBoardName}
-  //               selectedBoardId={selectedBoard[0]}
-  //             />
-  //           </div>
-  //         ) : (
-  //           null
-  //         )}
-  //       </div>
-  //     </div>
-  //   );
-  // }
-
-  // export default App;
-
-
-  // LILY
-
   return (
     <div className="App">
       <img className="image" src={myGif} alt="My-Jojo-Banner" />
