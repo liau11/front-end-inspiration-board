@@ -5,8 +5,7 @@ import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
 import Board from './components/BoardList';
 import CardList from './components/CardList';
-
-
+import myGif from './myGif.gif';
 // const BOARDS_DATA = [
 //   {
 //     board_id: 1,
@@ -155,24 +154,26 @@ function App() {
     setCardData(updatedData)
   };
 
+
   return (
     <div className="App">
-      <h1>Inspiration Board</h1>
-      <h2>Boards</h2>
+      <img className="image" src={myGif} alt="My-Jojo-Banner" />
+      <h1>INSPIRATION BOARD</h1>
+      <h2>BOARDS</h2>
       <Board
         className="board-data"
         boards={boardData}
         selectBoardIdCallback={selectBoardIdCallback}
       />
       <div>
-        <h2>Create A New Board</h2>
+        <h2>CREATE A NEW BOARD</h2>
         <NewBoardForm
           createNewBoardCallback={createNewBoard}
           setBoardData={setBoardData}
         />
       </div>
       <div>
-        <h2>Selected Board</h2>
+        <h2>SELECT A BOARD</h2>
         {selectedBoardName}
       </div>
       <div className="Card-Form">
