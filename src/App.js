@@ -114,15 +114,15 @@ function App() {
 
   const deleteBoard = (boardId) => {
     axios.delete(`${API_URL}/boards/${boardId}`)
-        .then((response) => {
-            const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
-            setBoardData(filteredUpdatedData);
-            console.log('Your board has been successfully deleted!')
-        })
-        .catch((error) => {
-            console.log('error', error, error.response);
-        });
-};
+      .then((response) => {
+        const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
+        setBoardData(filteredUpdatedData);
+        console.log('Your board has been successfully deleted!')
+      })
+      .catch((error) => {
+        console.log('error', error, error.response);
+      });
+  };
 
   const addNewCard = (newCard) => {
     axios.post(`${API_URL}/cards`, newCard)
@@ -158,7 +158,7 @@ function App() {
   return (
     <div className="App">
       <img className="image" src={myGif} alt="My-Jojo-Banner" />
-      <h1>INSPIRATION BOARD</h1>
+      <h1>Inspiration Board</h1>
       <h2>BOARDS</h2>
       <Board
         className="board-data"
@@ -173,13 +173,13 @@ function App() {
         />
       </div>
       <div>
-        <h2>SELECT A BOARD</h2>
+        <h2>SELECTED BOARD</h2>
         {selectedBoardName}
       </div>
       <div className="Card-Form">
         {userSelectedBoard ? (
           <div>
-            <h2>Create a New Card</h2>
+            <h2>CREATE A NEW CARD</h2>
             <NewCardForm
               addNewCard={addNewCard}
               selectedBoardId={selectedBoard[0]}
