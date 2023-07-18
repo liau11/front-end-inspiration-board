@@ -35,20 +35,6 @@ h1 {
   margin: 10px;
 }
 
-*/ #new-board-form {
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid;
-  background-color: white;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  justify-items: center;
-}
-
 .board-list-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
