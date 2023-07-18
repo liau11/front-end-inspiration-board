@@ -2,26 +2,44 @@
   text-align: center;
   color: #1D267D;
   font-family: 'Waiting for the Sunrise';
-  background: #2A2F4F;
-  background: -moz-linear-gradient(bottom, #2A2F4F 0%, #917FB3 46%, #E5BEEC 100%);
-  background: -webkit-linear-gradient(bottom, #2A2F4F 0%, #917FB3 46%, #E5BEEC 100%);
   background: linear-gradient(to top, #2A2F4F 0%, #917FB3 28%, #E5BEEC 100%);
 }
 
+.image {
+  height: 440px;
+  width: stretch;
+}
 
+h1 {
+  font-size: 50px;
+  text-shadow: 1px 1px #2A2F4F;
+}
 
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
+}
 
-/* .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
-text-align: center;
+.bottom-grid {
+  color: #b27dbb;
+}
+
+.board-containers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  overflow: scroll;
+  font-size: 15px;
+  margin: 10px;
+}
+
+*/ #new-board-form {
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid;
+  background-color: white;
 }
 
 .grid {
@@ -32,25 +50,14 @@ text-align: center;
 }
 
 .board-list-container {
-  /* box-sizing: border-box; */
-  height: 12rem;
-  /* width: 83rem;  */
-  /* padding:12rem; */
-  overflow: scroll;
-  margin-right: 1.5rem;
-  margin-left: 1.5rem;
-  border: 10px double #1D267D;
-  background-color: white;
-}
-
-.board-containers {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   overflow: scroll;
   font-size: 15px;
   margin: 10px;
-  font-family: ;
+  border: 3px solid #1D267D;
+  background-color: #D4ADFC;
 }
 
 #new-board-form {
