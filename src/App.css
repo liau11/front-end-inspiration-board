@@ -1,87 +1,31 @@
 .App {
-  text-align: center;
   font-family: 'Waiting for the Sunrise';
   background: rgb(145, 127, 179);
-}
-
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  text-align: center;
 }
 
-.App-link {
-  color: #61dafb;
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  justify-items: center;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-h2 {}
 
 .board-list-container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  min-height: 9rem;
   overflow: scroll;
-  margin-right: 35rem;
-  margin-left: 3rem;
   font-size: 15px;
+  margin: 10px;
   border: 3px solid #1D267D;
   background-color: #D4ADFC;
 }
 
-.selected-board-section {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  max-height: 9rem;
-  min-height: 9rem;
-  overflow: scroll;
-  margin-right: 15rem;
-  margin-left: 25rem;
-  border: 3px solid;
-}
-
 #new-board-form {
-  /* max-height: 7rem;  */
-  min-height: 7rem;
-  margin-right: 35rem;
-  margin-left: 25rem;
+  margin: 10px;
+  padding: 10px;
   border: 2px solid;
-  height: 300px;
-  width: 230px;
-}
-
-.delete-button {
-  align-content: center;
-}
-
-BOARDS_DATA {
-  ;
+  background-color: white;
 }

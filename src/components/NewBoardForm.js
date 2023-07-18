@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 import './NewBoardForm.js';
+import './NewBoardForm.css';
 
 const NewBoardForm = (props) => {
     const DEFAULT_FORM = {
@@ -28,36 +29,38 @@ const NewBoardForm = (props) => {
     }
 
     return (
-        <form onSubmit={handleFormSubmit}>
-            <label htmlFor="title">Title</label>
-            <input
-                type='text'
-                id='title'
-                name='title'
-                value={boardFormData.title}
-                onChange={handleChange}
-            />
-            <label htmlFor="owner">Owner's name</label>
-            <input
-                type='text'
-                id='owner'
-                name='owner'
-                value={boardFormData.owner}
-                onChange={handleChange}
-            />
-            <input type="submit" value="Submit" />
-            <label htmlFor="preview">Preview Your Message Here</label>
-            <input className="preview"
-                type='text'
-                id='message'
-                name='message'
-                value={`${boardFormData.title}: ${boardFormData.owner}`}
-                onChange={handleChange}
-            />
+        <form onSubmit={handleFormSubmit} className="new-board-form">
+            <div>
+                <label htmlFor="title">Title:</label>
+                <input
+                    type='text'
+                    id='title'
+                    name='title'
+                    value={boardFormData.title}
+                    onChange={handleChange}
+                />
+                <label htmlFor="owner">Owner's name:</label>
+                <input
+                    type='text'
+                    id='owner'
+                    name='owner'
+                    value={boardFormData.owner}
+                    onChange={handleChange}
+                />
+                <input type="submit" value="Submit" />
+            </div>
+            <div>
+                <label htmlFor="preview">Preview: </label>
+                <input className="preview"
+                    type='text'
+                    id='message'
+                    name='message'
+                    value={`${boardFormData.title}: ${boardFormData.owner}`}
+                    onChange={handleChange}
+                />
+            </div>
         </form>
-
     )
-
 }
 
 

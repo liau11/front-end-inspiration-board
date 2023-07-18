@@ -114,14 +114,14 @@ function App() {
 
   const deleteBoard = (boardId) => {
     axios.delete(`${API_URL}/boards/${boardId}`)
-        .then((response) => {
-            const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
-            setBoardData(filteredUpdatedData);
-        })
-        .catch((error) => {
-            console.log('error', error, error.response);
-        });
-};
+      .then((response) => {
+        const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
+        setBoardData(filteredUpdatedData);
+      })
+      .catch((error) => {
+        console.log('error', error, error.response);
+      });
+  };
 
   const addNewCard = (newCard) => {
     axios.post(`${API_URL}/cards`, newCard)
@@ -156,43 +156,57 @@ function App() {
   return (
     <div className="App">
       <h1>Inspiration Board</h1>
-      <h2>Boards</h2>
-      <Board
-        className="board-data"
-        boards={boardData}
-        selectBoardIdCallback={selectBoardIdCallback}
-      />
-      <div>
-        <h2>Create A New Board</h2>
-        <NewBoardForm
-          createNewBoardCallback={createNewBoard}
-          setBoardData={setBoardData}
-        />
+      <div className='top-grid grid'>
+        <div>
+          <h2>Boards</h2>
+          <Board
+            className="board-data"
+            boards={boardData}
+            selectBoardIdCallback={selectBoardIdCallback}
+          />
+        </div>
+        <div>
+          <h2>Create A New Board</h2>
+          <NewBoardForm
+            createNewBoardCallback={createNewBoard}
+            setBoardData={setBoardData}
+          />
+        </div>
       </div>
-      <div>
-        <h2>Selected Board</h2>
-        {selectedBoardName}
-      </div>
-      <div className="Card-Form">
-        {userSelectedBoard ? (
-          <div>
-            <h2>Create a New Card</h2>
-            <NewCardForm
-              addNewCard={addNewCard}
-              selectedBoardId={selectedBoard[0]}
-            />
-            <CardList
-              cards={cardData}
-              updateLike={updateLike}
-              deleteCard={deleteCard}
-              selectedBoardName={selectedBoardName}
-              selectedBoardId={selectedBoard[0]}
-            />
+      <div className='bottom-grid grid'>
+        <div>
+          <h2>Selected Board</h2>
+          {selectedBoardName}
+        </div>
+        <div>
+          <div className="Card-Form">
+            {userSelectedBoard ? (
+              <div>
+                <h2>Create a New Card</h2>
+                <NewCardForm
+                  addNewCard={addNewCard}
+                  selectedBoardId={selectedBoard[0]}
+                />
+              </div>
+            ) : (
+              null
+            )}
           </div>
-        ) : (
-          null
-        )}
+        </div>
       </div>
+      {userSelectedBoard ? (
+        <div>
+          <CardList
+            cards={cardData}
+            updateLike={updateLike}
+            deleteCard={deleteCard}
+            selectedBoardName={selectedBoardName}
+            selectedBoardId={selectedBoard[0]}
+          />
+        </div>
+      ) : (
+        null
+      )}
     </div>
   );
 }
