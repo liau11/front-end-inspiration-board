@@ -6,6 +6,8 @@ import NewCardForm from './components/NewCardForm';
 import Board from './components/BoardList';
 import CardList from './components/CardList';
 import myGif from './myGif.gif';
+import { ConstructionOutlined } from '@mui/icons-material';
+import BoardList from './components/BoardList';
 // const BOARDS_DATA = [
 //   {
 //     board_id: 1,
@@ -56,11 +58,16 @@ function App() {
   const [cardData, setCardData] = useState([])
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
+  console.log("Board Data", boardData)
+  
 
   // here is where onclick send back boardId info
+  // value of selectedboard?
   const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
+    console.log("selected Board in call back:", selectedBoard)
     setUserSelectedBoard(selectedBoard ? true : false)
+    getCardsInBoard(selectedBoard)
   }
 
   const selectedBoardName = userSelectedBoard ? selectedBoard[1] : "Select a Board from the Board List!"
@@ -85,7 +92,7 @@ function App() {
   useEffect(populateBoards, []);
 
   const createNewBoard = (newBoardData) => {
-    console.log(newBoardData)
+    console.log("New Board Form Data: ", newBoardData)
     axios
       .post(`${API_URL}/boards`, newBoardData)
       .then(() => {
@@ -96,21 +103,23 @@ function App() {
       });
   }
 
-  const getCardsInBoard = (boardId) => {
+  const getCardsInBoard = (selectedBoard) => {
     //route boards/<board_id>/cards
-    axios.get(`${API_URL}/boards/${boardId}/cards`)
+    console.log(selectedBoard)
+    axios.get(`${API_URL}/boards/${selectedBoard[0]}/cards`)
       .then((response) => {
-        const initialCardsInBoardData = [];
+        console.log(selectedBoard)
+        const cardsInBoardData = [];
         response.data.forEach((card) => {
-          initialCardsInBoardData.push(card);
+          cardsInBoardData.push(card);
         });
-        setCardData(initialCardsInBoardData)
+        setCardData(cardsInBoardData)
       })
       .catch((error) => {
         console.log("error: ", error);
       })
   }
-  useEffect(getCardsInBoard, []);
+  
 
   const deleteBoard = (boardId) => {
     axios.delete(`${API_URL}/boards/${boardId}`)
@@ -160,7 +169,7 @@ function App() {
       <img className="image" src={myGif} alt="My-Jojo-Banner" />
       <h1>INSPIRATION BOARD</h1>
       <h2>BOARDS</h2>
-      <Board
+      <BoardList
         className="board-data"
         boards={boardData}
         selectBoardIdCallback={selectBoardIdCallback}
