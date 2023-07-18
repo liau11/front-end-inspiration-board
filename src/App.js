@@ -8,49 +8,6 @@ import CardList from './components/CardList';
 import myGif from './myGif.gif';
 import { ConstructionOutlined } from '@mui/icons-material';
 import BoardList from './components/BoardList';
-// const BOARDS_DATA = [
-//   {
-//     board_id: 1,
-//     title: 'Flowers',
-//     owner_name: 'Lily'
-//   },
-//   {
-//     board_id: 2,
-//     title: 'Books',
-//     owner_name: 'Lily'
-//   },
-//   {
-//     board_id: 3,
-//     title: 'Beets, Bears, & BattleStar Galatica',
-//     owner_name: 'Niambi'
-//   },
-//   {
-//     board_id: 4,
-//     title: 'Byeee',
-//     owner_name: 'Niambi'
-//   },
-// ]
-
-// const CARDS_DATA = [
-//   {
-//     board_id: 1,
-//     card_id: 1,
-//     message: "message1",
-//     likes: 0
-//   },
-//   {
-//     board_id: 1,
-//     card_id: 2,
-//     message: "message2",
-//     likes: 0
-//   },
-//   {
-//     board_id: 2,
-//     card_id: 3,
-//     message: "message3",
-//     likes: 0
-//   }
-// ]
 
 function App() {
 
@@ -123,15 +80,15 @@ function App() {
 
   const deleteBoard = (boardId) => {
     axios.delete(`${API_URL}/boards/${boardId}`)
-        .then((response) => {
-            const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
-            setBoardData(filteredUpdatedData);
-            console.log('Your board has been successfully deleted!')
-        })
-        .catch((error) => {
-            console.log('error', error, error.response);
-        });
-};
+      .then((response) => {
+        const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
+        setBoardData(filteredUpdatedData);
+        console.log('Your board has been successfully deleted!')
+      })
+      .catch((error) => {
+        console.log('error', error, error.response);
+      });
+  };
 
   const addNewCard = (newCard) => {
     axios.post(`${API_URL}/cards`, newCard)
@@ -163,49 +120,61 @@ function App() {
     setCardData(updatedData)
   };
 
-
   return (
     <div className="App">
       <img className="image" src={myGif} alt="My-Jojo-Banner" />
-      <h1>INSPIRATION BOARD</h1>
-      <h2>BOARDS</h2>
-      <BoardList
-        className="board-data"
-        boards={boardData}
-        selectBoardIdCallback={selectBoardIdCallback}
-      />
-      <div>
-        <h2>CREATE A NEW BOARD</h2>
-        <NewBoardForm
-          createNewBoardCallback={createNewBoard}
-          setBoardData={setBoardData}
-        />
+      <h1>Inspiration Board</h1>
+      <div className='top-grid grid'>
+        <div>
+          <h2>Boards</h2>
+          <BoardList
+            className="board-data"
+            boards={boardData}
+            selectBoardIdCallback={selectBoardIdCallback}
+          />
+        </div>
+        <div>
+          <h2>Create A New Board</h2>
+          <NewBoardForm
+            createNewBoardCallback={createNewBoard}
+            setBoardData={setBoardData}
+          />
+        </div>
       </div>
-      <div>
-        <h2>SELECT A BOARD</h2>
-        {selectedBoardName}
-      </div>
-      <div className="Card-Form">
-        {userSelectedBoard ? (
-          <div>
-            <h2>Create a New Card</h2>
-            <NewCardForm
-              addNewCard={addNewCard}
-              selectedBoardId={selectedBoard[0]}
-            />
-            <CardList
-              cards={cardData}
-              // pass in all cards from selected board 
-              updateLike={updateLike}
-              deleteCard={deleteCard}
-              selectedBoardName={selectedBoardName}
-              selectedBoardId={selectedBoard[0]}
-            />
+      <div className='bottom-grid grid'>
+        <div>
+          <h2>Selected Board</h2>
+          {selectedBoardName}
+        </div>
+        <div>
+          <div className="Card-Form">
+            {userSelectedBoard ? (
+              <div>
+                <h2>Create a New Card</h2>
+                <NewCardForm
+                  addNewCard={addNewCard}
+                  selectedBoardId={selectedBoard[0]}
+                />
+              </div>
+            ) : (
+              null
+            )}
           </div>
-        ) : (
-          null
-        )}
+        </div>
       </div>
+      {userSelectedBoard ? (
+        <div>
+          <CardList
+            cards={cardData}
+            updateLike={updateLike}
+            deleteCard={deleteCard}
+            selectedBoardName={selectedBoardName}
+            selectedBoardId={selectedBoard[0]}
+          />
+        </div>
+      ) : (
+        null
+      )}
     </div>
   );
 }
