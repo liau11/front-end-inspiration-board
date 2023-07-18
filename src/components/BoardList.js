@@ -14,8 +14,8 @@ function DeleteBoardButton({ message }) {
 const BoardList = ({ boards, deleteBoard, selectBoardIdCallback }) => {
     const allBoards = boards.map((board) => (
         <Board
-            key={board.board_id}
-            boardId={board.board_id}
+            key={board.id}
+            boardId={board.id}
             owner={board.owner}
             title={board.title}
             selectBoardIdCallback={selectBoardIdCallback}
