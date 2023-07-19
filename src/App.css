@@ -20,10 +20,12 @@ h1 {
   font-size: 50px;
   text-shadow: 1px 1px #E5BEEC;
 }
+
 h2 {
   font-size: 50px;
   text-shadow: 1px 1px #E5BEEC;
 }
+
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -60,4 +62,8 @@ h2 {
   padding: 10px;
   border: 2px solid;
   background-color: white;
+}
+
+button {
+  margin: 8px;
 }

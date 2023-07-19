@@ -15,6 +15,7 @@ function App() {
   const [cardData, setCardData] = useState([])
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
+  const [showBoardForm, setShowBoardForm] = useState(true);
 
 
   const selectBoardIdCallback = (selectedBoard) => {
@@ -144,10 +145,13 @@ function App() {
         </div>
         <div>
           <h2>Create A New Board</h2>
-          <NewBoardForm
-            createNewBoardCallback={createNewBoard}
-            setBoardData={setBoardData}
-          />
+          <button onClick={() => setShowBoardForm(!showBoardForm)}>            {showBoardForm ? 'Hide Board Form' : 'Show Board Form'}
+          </button>
+          {showBoardForm && (
+            <div>
+              <NewBoardForm createNewBoardCallback={createNewBoard} setBoardData={setBoardData} />
+            </div>
+          )}
         </div>
       </div>
       <div className='bottom-grid grid'>
