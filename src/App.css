@@ -1,12 +1,16 @@
-.App {
-  text-align: center;
-  color: #1D267D;
-  font-family: 'Waiting for the Sunrise';
-  background: linear-gradient(to top, #2A2F4F 0%, #917FB3 28%, #E5BEEC 100%);
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=DM+Serif+Display:ital@1&family=VT323&display=swap');
 
 * {
   cursor: url(https://cur.cursors-4u.net/toons/too-8/too731.cur), auto !important;
+}
+
+.App {
+  text-align: center;
+  font-family: 'VT323', monospace;
+  font-size:34px;
+  font-variant-caps:all-petite-caps;
+  color: #1D267D;
+  background: linear-gradient(to top, #2A2F4F 1%, #917FB3 18%, #E5BEEC 100%);
 }
 
 .image {
@@ -17,13 +21,13 @@
 
 h1 {
   padding-top: 2rem;
-  font-size: 50px;
-  text-shadow: 1px 1px #E5BEEC;
+  font-size: 70px;
+  text-shadow: 3px 3px #E5BEEC;
 }
 
 h2 {
-  font-size: 50px;
-  text-shadow: 1px 1px #E5BEEC;
+  font-size: 60px;
+  text-shadow: 2px 1px #E5BEEC;
 }
 
 .grid {
@@ -42,7 +46,6 @@ h2 {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   overflow: scroll;
-  font-size: 15px;
   margin: 10px;
 }
 
@@ -51,7 +54,8 @@ h2 {
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   overflow: scroll;
-  font-size: 15px;
+  font-size: 25px;
+  font-variant-caps:small-caps;
   margin: 10px;
   border: 3px solid #1D267D;
   background-color: #D4ADFC;
@@ -64,6 +68,3 @@ h2 {
   background-color: white;
 }
 
-button {
-  margin: 8px;
-}

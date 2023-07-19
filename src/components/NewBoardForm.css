@@ -6,4 +6,21 @@
 
 label {
     padding: 5px;
+    font-size: 25px;
+}
+
+#title:hover {
+    background:#8ccd23;
+}
+#owner:hover {
+    background:#8ccd23;
+}
+button {
+    /* background-color: white; */
+}
+
+#message.preview {
+    font-size: 16px;
+    font-weight: italic;
+    /* color: black; */
 }
