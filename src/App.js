@@ -180,9 +180,9 @@ function App() {
         <div>
           <h2>Selected Board</h2>
           <div className='delete-grid'>
-            <div>
-              {selectedBoardName}
-            </div>
+          <div className ='selected-board-name'>
+          {selectedBoardName}
+          </div>
             {userSelectedBoard && (
               <div className="delete-button">
                 <button className="delete-board-button" onClick={() => deleteBoard(selectedBoard[0])}>
