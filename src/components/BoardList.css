@@ -23,7 +23,8 @@ h2 {
 ol,
 li {
     list-style: none;
-    text-align: left;
+    text-align: center;
+    padding: 3px;
 }
 
 ol {
@@ -50,7 +51,7 @@ ol li {
     /* box-sizing: border-box; */
     height: 12rem;
     /* width: 83rem;  */
-    /* padding:12rem; */
+    padding: 8px;
     overflow: scroll;
     margin-right: 1.5rem;
     margin-left: 1.5rem;

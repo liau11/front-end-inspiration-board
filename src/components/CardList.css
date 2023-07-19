@@ -4,3 +4,8 @@
     grid-column-gap: 30px;
     grid-row-gap: 30px;
 }
+
+.cards-section {
+    margin: 50px;
+    color: white;
+}

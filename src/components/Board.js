@@ -7,7 +7,7 @@ const Board = ({ boardId, title, owner, selectBoardIdCallback }) => {
 
     return (
         <section>
-            <div className='currentBoard' onClick={() => selectBoardIdCallback([boardId, title, owner])} >
+            <div id='currentBoard' onClick={() => selectBoardIdCallback([boardId, title, owner])} >
                 {`${title}: ${owner}`}
             </div>
         </section >
