@@ -3,16 +3,12 @@ import PropTypes from "prop-types";
 import './NewCardForm.css';
 
 
-// test data
-// const selected_boardId = 1
-
 const NewCardForm = ({ addNewCard, selectedBoardId }) => {
 
     const DEFAULT_CARD_FORM = {
         board_id: null,
+        like_count: 0,
         message: "",
-        likes: 0,
-        card_id: Math.random(0, 1)
     }
 
     const [cardFormData, setCardFormData] = useState(DEFAULT_CARD_FORM);
@@ -21,7 +17,6 @@ const NewCardForm = ({ addNewCard, selectedBoardId }) => {
         const newCardData = {
             ...cardFormData,
             board_id: selectedBoardId,
-            card_id: Math.random(0, 1),
             [event.target.name]: event.target.value
         }
         setCardFormData(newCardData);
