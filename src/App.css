@@ -16,18 +16,18 @@
 .image {
   height: 340px;
   width: stretch;
-  border-bottom: double 7px #1D267D;
+  border-bottom: double 8px #1D267D;
 }
 
 h1 {
   padding-top: 2rem;
   font-size: 70px;
-  text-shadow: 3px 3px #E5BEEC;
+  text-shadow: 3px 3px #8ccd23;
 }
 
 h2 {
   font-size: 60px;
-  text-shadow: 2px 1px #E5BEEC;
+  text-shadow: 2px 1px #8ccd23;
 }
 
 .grid {
