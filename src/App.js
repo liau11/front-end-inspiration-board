@@ -30,7 +30,7 @@ function App() {
 
   const displayErrorShortPeriod = (error) => {
     setCardError(error);
-    setTimeout(()=> {
+    setTimeout(() => {
       setCardError(null);
     }, 3000);
   }
@@ -114,6 +114,7 @@ function App() {
       })
       .catch((error) => {
         console.log('error', error);
+        displayErrorShortPeriod(error.response.data)
       });
   };
 
@@ -126,7 +127,6 @@ function App() {
       })
       .catch((error) => {
         console.log('This is a card error', error);
-        displayErrorShortPeriod(error.response.data)
       });
   };
 
@@ -201,9 +201,8 @@ function App() {
                   addNewCard={addNewCard}
                   selectedBoardId={selectedBoard[0]}
                 />
-                <div>{cardError && <CardErrorDisplay errorCallBack={cardError} /> }</div>
+                <div>{cardError && <CardErrorDisplay errorCallBack={cardError} />}</div>
               </div>
-              
             ) : (
               null
             )}
