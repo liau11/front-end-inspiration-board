@@ -10,15 +10,20 @@
 }
 
 .image {
-  height: 440px;
+  height: 340px;
   width: stretch;
+  border-bottom: double 7px #1D267D;
 }
 
 h1 {
+  padding-top: 2rem;
   font-size: 50px;
-  text-shadow: 1px 1px #2A2F4F;
+  text-shadow: 1px 1px #E5BEEC;
 }
-
+h2 {
+  font-size: 50px;
+  text-shadow: 1px 1px #E5BEEC;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -27,7 +32,7 @@ h1 {
 }
 
 .bottom-grid {
-  color: #b27dbb;
+  /* color: #white; */
 }
 
 .board-containers {
