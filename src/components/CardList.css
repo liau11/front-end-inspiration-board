@@ -7,5 +7,9 @@
 
 .cards-section {
     margin: 50px;
-    font-size: 30px;
+    font-size: 40px;
+}
+
+#message:hover {
+    background:#8ccd23;
 }
