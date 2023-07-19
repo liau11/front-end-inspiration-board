@@ -24,3 +24,6 @@ button {
     font-weight: italic;
     /* color: black; */
 }
+#message.preview:hover {
+    background: transparent;
+}
