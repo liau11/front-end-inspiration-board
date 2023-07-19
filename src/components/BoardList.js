@@ -1,19 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Board from './Board';
-import NewBoardForm from './NewBoardForm';
 import './BoardList.css'
 
-
-// const DeleteBoardButton = ({ message, onClick }) => {
-//     const handleClick = () => {
-//         alert(message)
-//         onClick();
-//     };
-//         return (
-//             <button onClick={handleClick}>Delete Board</button>
-//         );
-// };
 
 const BoardList = ({ boards, selectBoardIdCallback }) => {
     const allBoards = boards.map((board) => (
@@ -34,17 +23,13 @@ const BoardList = ({ boards, selectBoardIdCallback }) => {
                         {allBoards}
                     </ol>
                 </div>
-                {/* <div className="delete-button">
-                    <DeleteBoardButton  message="Your board has been deleted!" onClick={deleteBoard}/>
-                </div> */}
             </div>
         </section>
     );
 };
 
 BoardList.propTypes = {
-boards: PropTypes.arrayOf(PropTypes.object).isRequired
-// deleteAllBoards: PropTypes.func.isRequired,
+    boards: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default BoardList;

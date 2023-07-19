@@ -7,8 +7,8 @@
 .App {
   text-align: center;
   font-family: 'VT323', monospace;
-  font-size:34px;
-  font-variant-caps:all-petite-caps;
+  font-size: 34px;
+  font-variant-caps: all-petite-caps;
   color: #1D267D;
   background: linear-gradient(to top, #2A2F4F 1%, #917FB3 18%, #E5BEEC 100%);
 }
@@ -55,7 +55,7 @@ h2 {
   gap: 10px;
   overflow: scroll;
   font-size: 25px;
-  font-variant-caps:small-caps;
+  font-variant-caps: small-caps;
   margin: 10px;
   border: 3px solid #1D267D;
   background-color: #D4ADFC;
@@ -67,4 +67,3 @@ h2 {
   border: 2px solid;
   background-color: white;
 }
-
