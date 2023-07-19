@@ -11,8 +11,8 @@ const CardList = ({ cards, updateLike, deleteCard, selectedBoardName, selectedBo
         if (card.board_id === selectedBoardId) {
             return (
                 < Card
-                    key={card.card_id}
-                    cardId={card.card_id}
+                    key={card.id}
+                    cardId={card.id}
                     message={card.message}
                     likes={card.likes}
                     updateLike={updateLike}
