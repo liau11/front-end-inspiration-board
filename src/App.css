@@ -76,6 +76,7 @@ h2 {
 .delete-grid {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .delete-button {
@@ -86,5 +87,4 @@ h2 {
   border: none;
   background: none;
   cursor: pointer;
-  align-content: center;
 }
