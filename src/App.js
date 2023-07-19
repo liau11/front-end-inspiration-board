@@ -109,20 +109,19 @@ function App() {
 
 
   const updateLike = (cardId, likeCount) => {
-    const updatedData = cardData.map((card) => {
-      if (card.id === cardId) {
-        return {
-          ...card,
-          likes_count: likeCount,
-        };
-      }
-      return card;
-    });
-    setCardData(updatedData);
-
     axios
       .put(`${API_URL}/cards/${cardId}/likes`, { likes_count: likeCount })
       .then((response) => {
+        const updatedData = cardData.map((card) => {
+          if (card.id === cardId) {
+            return {
+              ...card,
+              likes_count: likeCount,
+            };
+          }
+          return card;
+        });
+        setCardData(updatedData);
       })
       .catch((error) => {
         console.log('error: ', error);
