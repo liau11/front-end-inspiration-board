@@ -166,7 +166,9 @@ function App() {
       <div className='bottom-grid grid'>
         <div>
           <h2>Selected Board</h2>
+          <div className ='selected-board-name'>
           {selectedBoardName}
+          </div>
           {userSelectedBoard && (
             <div className="delete-button">
               <Board

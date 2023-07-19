@@ -68,3 +68,7 @@ h2 {
   background-color: white;
 }
 
+.selected-board-name {
+  color: white;
+  text-shadow: 2px #1D267D;
+}
