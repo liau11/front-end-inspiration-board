@@ -15,14 +15,10 @@ function App() {
   const [cardData, setCardData] = useState([])
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
-  console.log("Board Data", boardData)
 
 
-  // here is where onclick send back boardId info
-  // value of selectedboard?
   const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
-    console.log("selected Board in call back:", selectedBoard)
     setUserSelectedBoard(selectedBoard ? true : false)
     getCardsInBoard(selectedBoard)
   }
@@ -43,7 +39,6 @@ function App() {
       .catch((error) => {
         console.log("error: ", error);
       })
-
   }
 
   useEffect(populateBoards, []);
@@ -56,16 +51,15 @@ function App() {
         populateBoards();
       })
       .catch((error) => {
-        console.log(error);
+        console.log("error: ", error);
       });
   }
 
   const getCardsInBoard = (selectedBoard) => {
     //route boards/<board_id>/cards
-    console.log(selectedBoard)
+    console.log("This is the selected Board", selectedBoard)
     axios.get(`${API_URL}/boards/${selectedBoard[0]}/cards`)
       .then((response) => {
-        console.log(selectedBoard)
         const cardsInBoardData = [];
         response.data.forEach((card) => {
           cardsInBoardData.push(card);
@@ -83,21 +77,23 @@ function App() {
       .then((response) => {
         const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
         setBoardData(filteredUpdatedData);
-        console.log('Your board has been successfully deleted!')
       })
       .catch((error) => {
-        console.log('error', error, error.response);
+        console.log('error', error);
       });
   };
 
+
   const addNewCard = (newCard) => {
-    axios.post(`${API_URL}/cards`, newCard)
-      .then(
-        axios.get(`${API_URL}/${newCard.board_id}/cards`)
-      )
-      .catch()
-    setCardData([...cardData, newCard])
-  }
+    axios
+      .post(`${API_URL}/cards`, newCard)
+      .then(() => {
+        getCardsInBoard(selectedBoard);
+      })
+      .catch((error) => {
+        console.log('error', error);
+      });
+  };
 
 
   const deleteCard = (cardId) => {
@@ -107,23 +103,32 @@ function App() {
         setCardData(filteredUpdatedData);
       })
       .catch((error) => {
-        console.log('error', error, error.response);
+        console.log('error: ', error);
       });
   };
 
+
   const updateLike = (cardId, likeCount) => {
-    const updatedData = cardData.map(card => {
+    const updatedData = cardData.map((card) => {
       if (card.id === cardId) {
         return {
           ...card,
-          likes: likeCount
+          likes_count: likeCount,
         };
-      } else {
-        return card
       }
+      return card;
     });
-    setCardData(updatedData)
+    setCardData(updatedData);
+
+    axios
+      .put(`${API_URL}/cards/${cardId}/likes`, { likes_count: likeCount })
+      .then((response) => {
+      })
+      .catch((error) => {
+        console.log('error: ', error);
+      });
   };
+
 
   return (
     <div className="App">

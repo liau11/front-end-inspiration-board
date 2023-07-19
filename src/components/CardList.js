@@ -14,7 +14,7 @@ const CardList = ({ cards, updateLike, deleteCard, selectedBoardName, selectedBo
                     key={card.id}
                     cardId={card.id}
                     message={card.message}
-                    likes={card.likes}
+                    likes={card.likes_count}
                     updateLike={updateLike}
                     deleteCard={deleteCard}
                 />
@@ -24,7 +24,7 @@ const CardList = ({ cards, updateLike, deleteCard, selectedBoardName, selectedBo
 
     return (
         <div>
-            <h2> Cards for {selectedBoardName} </h2>
+            <h2 className='cards-section'> Cards for {selectedBoardName} </h2>
             <div className='all-cards'>{allCards}</div>
             {/* send all cards for one board data here */}
         </div>
