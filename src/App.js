@@ -3,12 +3,14 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
-import Board from './components/Board';
 import CardList from './components/CardList';
 import myGif from './myGif.gif';
-import { ConstructionOutlined } from '@mui/icons-material';
 import BoardList from './components/BoardList';
+<<<<<<< HEAD
 import CardErrorDisplay from './components/CardErrorDisplay';
+=======
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
+>>>>>>> delete-board
 
 function App() {
 
@@ -17,7 +19,12 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
   const [showBoardForm, setShowBoardForm] = useState(true);
+<<<<<<< HEAD
   const [cardError, setCardError] = useState(null)
+=======
+  const [isDeleting, setIsDeleting] = useState(false);
+
+>>>>>>> delete-board
 
   useEffect(() => { document.title = "Inspo Jojo" }, []);
 
@@ -67,7 +74,6 @@ function App() {
   }
 
   const getCardsInBoard = (selectedBoard) => {
-    //route boards/<board_id>/cards
     console.log("This is the selected Board", selectedBoard)
     axios.get(`${API_URL}/boards/${selectedBoard[0]}/cards`)
       .then((response) => {
@@ -88,9 +94,12 @@ function App() {
       .then((response) => {
         const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
         setBoardData(filteredUpdatedData);
-
-        setBoardData(filteredUpdatedData);
-
+        if (!isDeleting) {
+          const confirmDelete = window.confirm("You are deleting a board, are you sure?");
+          if (confirmDelete) {
+            setIsDeleting(true);
+          }
+        }
         if (selectedBoard[0] === boardId) {
           setSelectedBoard([null, "", ""]);
           setUserSelectedBoard(false);
@@ -176,6 +185,7 @@ function App() {
       <div className='bottom-grid grid'>
         <div>
           <h2>Selected Board</h2>
+<<<<<<< HEAD
           <div className ='selected-board-name'>
           {selectedBoardName}
           </div>
@@ -188,8 +198,20 @@ function App() {
                 selectBoardIdCallback={selectBoardIdCallback}
                 deleteBoard={deleteBoard}
               />
+=======
+          <div className='delete-grid'>
+            <div>
+              {selectedBoardName}
+>>>>>>> delete-board
             </div>
-          )}
+            {userSelectedBoard && (
+              <div className="delete-button">
+                <button className="delete-board-button" onClick={() => deleteBoard(selectedBoard[0])}>
+                  <DeleteOutlineOutlinedIcon fontSize="small" />
+                </button>
+              </div>
+            )}
+          </div>
         </div>
         <div>
           <div className="Card-Form">
