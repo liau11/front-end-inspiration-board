@@ -5,6 +5,13 @@
   background: linear-gradient(to top, #2A2F4F 0%, #917FB3 28%, #E5BEEC 100%);
 }
 
+/* Start https://www.cursors-4u.com */
+* {
+  cursor: url(https://ani.cursors-4u.net/nature/nat-11/nat1054.cur), auto !important;
+}
+
+/* End https://www.cursors-4u.com */
+
 .image {
   height: 440px;
   width: stretch;
