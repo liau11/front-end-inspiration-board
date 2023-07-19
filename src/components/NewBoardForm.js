@@ -15,7 +15,12 @@ const NewBoardForm = (props) => {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setBoardFormData({ ...boardFormData, [name]: value });
-        setPreview(boardFormData.title !== '' || boardFormData.owner !== '' ? `${boardFormData.title}: ${boardFormData.owner}` : '');
+
+        const previewText = Object.keys(boardFormData)
+            .map(key => (name === key ? value : boardFormData[key]))
+            .join(': ');
+
+        setPreview(previewText);
     };
 
     const handleFormSubmit = (event) => {
