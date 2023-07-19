@@ -24,7 +24,14 @@ const NewBoardForm = (props) => {
     };
 
     const handleFormSubmit = (event) => {
-        console.log(boardFormData)
+        const { owner, title } = boardFormData;
+        const isOwnerFilled = owner.trim() !== '';
+        const isTitleFilled = title.trim() !== '';
+
+        if ((isOwnerFilled && !isTitleFilled) || (!isOwnerFilled && isTitleFilled)) {
+            alert('Please fill both the owner and title fields before submitting.');
+            return;
+        }
         event.preventDefault();
         props.createNewBoardCallback(boardFormData);
         setBoardFormData(DEFAULT_FORM);
