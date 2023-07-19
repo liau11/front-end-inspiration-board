@@ -15,11 +15,23 @@ const NewBoardForm = (props) => {
     const handleChange = (event) => {
         const { name, value } = event.target;
         setBoardFormData({ ...boardFormData, [name]: value });
-        setPreview(boardFormData.title !== '' || boardFormData.owner !== '' ? `${boardFormData.title}: ${boardFormData.owner}` : '');
+
+        const previewText = Object.keys(boardFormData)
+            .map(key => (name === key ? value : boardFormData[key]))
+            .join(': ');
+
+        setPreview(previewText);
     };
 
     const handleFormSubmit = (event) => {
-        console.log(boardFormData)
+        const { owner, title } = boardFormData;
+        const isOwnerFilled = owner.trim() !== '';
+        const isTitleFilled = title.trim() !== '';
+
+        if ((isOwnerFilled && !isTitleFilled) || (!isOwnerFilled && isTitleFilled)) {
+            alert('Please fill both the owner and title fields before submitting.');
+            return;
+        }
         event.preventDefault();
         props.createNewBoardCallback(boardFormData);
         setBoardFormData(DEFAULT_FORM);
