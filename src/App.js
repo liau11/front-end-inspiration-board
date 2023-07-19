@@ -16,7 +16,7 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
   console.log("Board Data", boardData)
-  
+
 
   // here is where onclick send back boardId info
   // value of selectedboard?
@@ -76,7 +76,7 @@ function App() {
         console.log("error: ", error);
       })
   }
-  
+
 
   const deleteBoard = (boardId) => {
     axios.delete(`${API_URL}/boards/${boardId}`)
@@ -99,11 +99,16 @@ function App() {
     setCardData([...cardData, newCard])
   }
 
+
   const deleteCard = (cardId) => {
-    const newCardData = cardData.filter(
-      (card) => card.card_id !== cardId
-    )
-    setCardData(newCardData);
+    axios.delete(`${API_URL}/cards/${cardId}`)
+      .then((response) => {
+        const filteredUpdatedData = cardData.filter(card => card.id !== cardId);
+        setCardData(filteredUpdatedData);
+      })
+      .catch((error) => {
+        console.log('error', error, error.response);
+      });
   };
 
   const updateLike = (cardId, likeCount) => {
