@@ -19,6 +19,8 @@ function App() {
   const [showBoardForm, setShowBoardForm] = useState(true);
   const [cardError, setCardError] = useState(null)
 
+  useEffect(() => { document.title = "Inspo Jojo" }, []);
+
   const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
     setUserSelectedBoard(selectedBoard ? true : false)
@@ -87,14 +89,14 @@ function App() {
         const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
         setBoardData(filteredUpdatedData);
 
-      setBoardData(filteredUpdatedData);
+        setBoardData(filteredUpdatedData);
 
-      if(selectedBoard[0] === boardId) {
-        setSelectedBoard([null, "", ""]);
-        setUserSelectedBoard(false);
-        setCardData([]);
-      }
-    })
+        if (selectedBoard[0] === boardId) {
+          setSelectedBoard([null, "", ""]);
+          setUserSelectedBoard(false);
+          setCardData([]);
+        }
+      })
       .catch((error) => {
         console.log('error', error);
       });
@@ -160,7 +162,6 @@ function App() {
             selectBoardIdCallback={selectBoardIdCallback}
           />
         </div>
-
         <div>
           <h2>Create A New Board</h2>
           <button onClick={() => setShowBoardForm(!showBoardForm)}>            {showBoardForm ? 'Hide Board Form' : 'Show Board Form'}
@@ -175,17 +176,19 @@ function App() {
       <div className='bottom-grid grid'>
         <div>
           <h2>Selected Board</h2>
+          <div className ='selected-board-name'>
           {selectedBoardName}
-          {userSelectedBoard && (
-          <div className="delete-button">
-            <Board
-              boardId={selectedBoard[0]}
-              title={selectedBoard[1]}
-              owner={selectedBoard[2]}
-              selectBoardIdCallback={selectBoardIdCallback}
-              deleteBoard={deleteBoard}
-            />
           </div>
+          {userSelectedBoard && (
+            <div className="delete-button">
+              <Board
+                boardId={selectedBoard[0]}
+                title={selectedBoard[1]}
+                owner={selectedBoard[2]}
+                selectBoardIdCallback={selectBoardIdCallback}
+                deleteBoard={deleteBoard}
+              />
+            </div>
           )}
         </div>
         <div>
