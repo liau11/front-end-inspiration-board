@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './App.css';
 import NewBoardForm from './components/NewBoardForm';
 import NewCardForm from './components/NewCardForm';
-import Board from './components/BoardList';
+import Board from './components/Board';
 import CardList from './components/CardList';
 import myGif from './myGif.gif';
 import { ConstructionOutlined } from '@mui/icons-material';
@@ -15,7 +15,6 @@ function App() {
   const [cardData, setCardData] = useState([])
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
-
 
   const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
@@ -77,7 +76,15 @@ function App() {
       .then((response) => {
         const filteredUpdatedData = boardData.filter(board => board.id !== boardId);
         setBoardData(filteredUpdatedData);
-      })
+
+      setBoardData(filteredUpdatedData);
+
+      if(selectedBoard[0] === boardId) {
+        setSelectedBoard([null, "", ""]);
+        setUserSelectedBoard(false);
+        setCardData([]);
+      }
+    })
       .catch((error) => {
         console.log('error', error);
       });
@@ -143,6 +150,7 @@ function App() {
             selectBoardIdCallback={selectBoardIdCallback}
           />
         </div>
+
         <div>
           <h2>Create A New Board</h2>
           <NewBoardForm
@@ -155,6 +163,17 @@ function App() {
         <div>
           <h2>Selected Board</h2>
           {selectedBoardName}
+          {userSelectedBoard && (
+          <div className="delete-button">
+            <Board
+              boardId={selectedBoard[0]}
+              title={selectedBoard[1]}
+              owner={selectedBoard[2]}
+              selectBoardIdCallback={selectBoardIdCallback}
+              deleteBoard={deleteBoard}
+            />
+          </div>
+          )}
         </div>
         <div>
           <div className="Card-Form">

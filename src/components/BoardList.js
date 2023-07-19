@@ -5,17 +5,17 @@ import NewBoardForm from './NewBoardForm';
 import './BoardList.css'
 
 
-const DeleteBoardButton = ({ message, onClick }) => {
-    const handleClick = () => {
-        alert(message)
-        onClick();
-    };
-        return (
-            <button onClick={handleClick}>Delete Board</button>
-        );
-};
+// const DeleteBoardButton = ({ message, onClick }) => {
+//     const handleClick = () => {
+//         alert(message)
+//         onClick();
+//     };
+//         return (
+//             <button onClick={handleClick}>Delete Board</button>
+//         );
+// };
 
-const BoardList = ({ boards, deleteBoard, selectBoardIdCallback }) => {
+const BoardList = ({ boards, selectBoardIdCallback }) => {
     const allBoards = boards.map((board) => (
         <Board
             key={board.id}
@@ -34,17 +34,17 @@ const BoardList = ({ boards, deleteBoard, selectBoardIdCallback }) => {
                         {allBoards}
                     </ol>
                 </div>
-                <div className="delete-button">
+                {/* <div className="delete-button">
                     <DeleteBoardButton  message="Your board has been deleted!" onClick={deleteBoard}/>
-                </div>
+                </div> */}
             </div>
         </section>
     );
 };
 
 BoardList.propTypes = {
-boards: PropTypes.arrayOf(PropTypes.object).isRequired,
-deleteAllBoards: PropTypes.func.isRequired,
+boards: PropTypes.arrayOf(PropTypes.object).isRequired
+// deleteAllBoards: PropTypes.func.isRequired,
 };
 
 export default BoardList;
