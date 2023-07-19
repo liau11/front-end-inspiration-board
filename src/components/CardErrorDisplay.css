@@ -1,0 +1,15 @@
+.error {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.error {
+    border: 3px solid red;
+    background-color: rgb(229, 162, 162);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.error h3 {
+    font-weight: bold;
+}

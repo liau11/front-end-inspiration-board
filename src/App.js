@@ -8,6 +8,7 @@ import CardList from './components/CardList';
 import myGif from './myGif.gif';
 import { ConstructionOutlined } from '@mui/icons-material';
 import BoardList from './components/BoardList';
+import CardErrorDisplay from './components/CardErrorDisplay';
 
 function App() {
 
@@ -16,11 +17,19 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
   const [showBoardForm, setShowBoardForm] = useState(true);
+  const [cardError, setCardError] = useState(null)
 
   const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
     setUserSelectedBoard(selectedBoard ? true : false)
     getCardsInBoard(selectedBoard)
+  }
+
+  const displayErrorShortPeriod = (error) => {
+    setCardError(error);
+    setTimeout(()=> {
+      setCardError(null);
+    }, 3000);
   }
 
   const selectedBoardName = userSelectedBoard ? selectedBoard[1] : "Select a Board from the Board List!"
@@ -99,7 +108,8 @@ function App() {
         getCardsInBoard(selectedBoard);
       })
       .catch((error) => {
-        console.log('error', error);
+        console.log('This is a card error', error);
+        displayErrorShortPeriod(error.response.data)
       });
   };
 
@@ -181,13 +191,12 @@ function App() {
         <div>
           <div className="Card-Form">
             {userSelectedBoard ? (
-              <div>
+              <><div>
                 <h2>Create a New Card</h2>
                 <NewCardForm
                   addNewCard={addNewCard}
-                  selectedBoardId={selectedBoard[0]}
-                />
-              </div>
+                  selectedBoardId={selectedBoard[0]} />
+              </div>{cardError && <CardErrorDisplay errorCallBack={cardError} /> }<div></div></>
             ) : (
               null
             )}
