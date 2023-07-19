@@ -28,6 +28,7 @@ const NewBoardForm = (props) => {
         setBoardFormData(DEFAULT_FORM);
     }
 
+
     return (
         <form onSubmit={handleFormSubmit} className="new-board-form">
             <div>
@@ -55,7 +56,7 @@ const NewBoardForm = (props) => {
                     type='text'
                     id='message'
                     name='message'
-                    value={`${boardFormData.title}: ${boardFormData.owner}`}
+                    value={boardFormData.title || boardFormData.owner ? `${boardFormData.title}: ${boardFormData.owner}` : null}
                     onChange={handleChange}
                 />
             </div>
