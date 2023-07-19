@@ -72,3 +72,19 @@ h2 {
   color: white;
   text-shadow: 2px #1D267D;
 }
+
+.delete-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.delete-button {
+  margin-left: 10px;
+}
+
+.delete-board-button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  align-content: center;
+}
