@@ -113,7 +113,7 @@ function App() {
 
   const updateLike = (cardId, likeCount) => {
     const updatedData = cardData.map(card => {
-      if (card.card_id === cardId) {
+      if (card.id === cardId) {
         return {
           ...card,
           likes: likeCount
