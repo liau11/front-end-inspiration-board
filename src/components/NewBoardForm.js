@@ -10,22 +10,32 @@ const NewBoardForm = (props) => {
     };
 
     const [boardFormData, setBoardFormData] = useState(DEFAULT_FORM);
-    // const [hideBoardForm, setHideBoardForm] = useState(false);
+    const [preview, setPreview] = useState('');
 
     const handleChange = (event) => {
-        console.log(event.target.name)
+        const { name, value } = event.target;
+        setBoardFormData({ ...boardFormData, [name]: value });
 
-        const newFormData = {
-            ...boardFormData,
-            [event.target.name]: event.target.value
-        }
-        setBoardFormData(newFormData);
-    }
+        const previewText = Object.keys(boardFormData)
+            .map(key => (name === key ? value : boardFormData[key]))
+            .join(': ');
+
+        setPreview(previewText);
+    };
+
     const handleFormSubmit = (event) => {
-        console.log(boardFormData)
+        const { owner, title } = boardFormData;
+        const isOwnerFilled = owner.trim() !== '';
+        const isTitleFilled = title.trim() !== '';
+
+        if ((isOwnerFilled && !isTitleFilled) || (!isOwnerFilled && isTitleFilled)) {
+            alert('Please fill both the owner and title fields before submitting.');
+            return;
+        }
         event.preventDefault();
         props.createNewBoardCallback(boardFormData);
         setBoardFormData(DEFAULT_FORM);
+        setPreview('');
     }
 
 
@@ -52,12 +62,12 @@ const NewBoardForm = (props) => {
             </div>
             <div>
                 <label htmlFor="preview">Preview: </label>
-                <input className="preview"
+                <input
+                    className="preview"
                     type='text'
                     id='message'
                     name='message'
-                    value={boardFormData.title || boardFormData.owner ? `${boardFormData.title}: ${boardFormData.owner}` : null}
-                    onChange={handleChange}
+                    value={preview}
                 />
             </div>
         </form>

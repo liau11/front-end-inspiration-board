@@ -1,5 +1,5 @@
 .card {
-    background-color: rgb(239, 239, 120);
+    background-color:#8ccd23;
     box-shadow: 10px 10px 10px rgb(56, 44, 56);
     margin: 20px;
 }
@@ -24,7 +24,7 @@
 
 .plusOneButton {
     margin: 10px;
-    background-color: #EA4C89;
+    background-color: #e24cea;
     color: #FFFFFF;
     border-radius: 7px;
 }
@@ -34,4 +34,9 @@
     color: #EA4C89;
     cursor: pointer;
     transition: 0.15s;
+}
+
+.cards-section {
+    font-size: 60px;
+    
 }

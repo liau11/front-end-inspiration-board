@@ -15,6 +15,7 @@ function App() {
   const [cardData, setCardData] = useState([])
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
+  const [showBoardForm, setShowBoardForm] = useState(true);
 
   const selectBoardIdCallback = (selectedBoard) => {
     setSelectedBoard(selectedBoard)
@@ -116,20 +117,19 @@ function App() {
 
 
   const updateLike = (cardId, likeCount) => {
-    const updatedData = cardData.map((card) => {
-      if (card.id === cardId) {
-        return {
-          ...card,
-          likes_count: likeCount,
-        };
-      }
-      return card;
-    });
-    setCardData(updatedData);
-
     axios
       .put(`${API_URL}/cards/${cardId}/likes`, { likes_count: likeCount })
       .then((response) => {
+        const updatedData = cardData.map((card) => {
+          if (card.id === cardId) {
+            return {
+              ...card,
+              likes_count: likeCount,
+            };
+          }
+          return card;
+        });
+        setCardData(updatedData);
       })
       .catch((error) => {
         console.log('error: ', error);
@@ -153,10 +153,13 @@ function App() {
 
         <div>
           <h2>Create A New Board</h2>
-          <NewBoardForm
-            createNewBoardCallback={createNewBoard}
-            setBoardData={setBoardData}
-          />
+          <button onClick={() => setShowBoardForm(!showBoardForm)}>            {showBoardForm ? 'Hide Board Form' : 'Show Board Form'}
+          </button>
+          {showBoardForm && (
+            <div>
+              <NewBoardForm createNewBoardCallback={createNewBoard} setBoardData={setBoardData} />
+            </div>
+          )}
         </div>
       </div>
       <div className='bottom-grid grid'>
