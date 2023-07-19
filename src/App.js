@@ -6,11 +6,7 @@ import NewCardForm from './components/NewCardForm';
 import CardList from './components/CardList';
 import myGif from './myGif.gif';
 import BoardList from './components/BoardList';
-<<<<<<< HEAD
-import CardErrorDisplay from './components/CardErrorDisplay';
-=======
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
->>>>>>> delete-board
 
 function App() {
 
@@ -19,12 +15,8 @@ function App() {
   const [selectedBoard, setSelectedBoard] = useState([null, "", ""])
   const [userSelectedBoard, setUserSelectedBoard] = useState(false)
   const [showBoardForm, setShowBoardForm] = useState(true);
-<<<<<<< HEAD
-  const [cardError, setCardError] = useState(null)
-=======
   const [isDeleting, setIsDeleting] = useState(false);
 
->>>>>>> delete-board
 
   useEffect(() => { document.title = "Inspo Jojo" }, []);
 
@@ -32,13 +24,6 @@ function App() {
     setSelectedBoard(selectedBoard)
     setUserSelectedBoard(selectedBoard ? true : false)
     getCardsInBoard(selectedBoard)
-  }
-
-  const displayErrorShortPeriod = (error) => {
-    setCardError(error);
-    setTimeout(()=> {
-      setCardError(null);
-    }, 3000);
   }
 
   const selectedBoardName = userSelectedBoard ? selectedBoard[1] : "Select a Board from the Board List!"
@@ -119,8 +104,7 @@ function App() {
         getCardsInBoard(selectedBoard);
       })
       .catch((error) => {
-        console.log('This is a card error', error);
-        displayErrorShortPeriod(error.response.data)
+        console.log('error', error);
       });
   };
 
@@ -185,24 +169,9 @@ function App() {
       <div className='bottom-grid grid'>
         <div>
           <h2>Selected Board</h2>
-<<<<<<< HEAD
-          <div className ='selected-board-name'>
-          {selectedBoardName}
-          </div>
-          {userSelectedBoard && (
-            <div className="delete-button">
-              <Board
-                boardId={selectedBoard[0]}
-                title={selectedBoard[1]}
-                owner={selectedBoard[2]}
-                selectBoardIdCallback={selectBoardIdCallback}
-                deleteBoard={deleteBoard}
-              />
-=======
           <div className='delete-grid'>
             <div>
               {selectedBoardName}
->>>>>>> delete-board
             </div>
             {userSelectedBoard && (
               <div className="delete-button">
@@ -216,12 +185,13 @@ function App() {
         <div>
           <div className="Card-Form">
             {userSelectedBoard ? (
-              <><div>
+              <div>
                 <h2>Create a New Card</h2>
                 <NewCardForm
                   addNewCard={addNewCard}
-                  selectedBoardId={selectedBoard[0]} />
-              </div>{cardError && <CardErrorDisplay errorCallBack={cardError} /> }<div></div></>
+                  selectedBoardId={selectedBoard[0]}
+                />
+              </div>
             ) : (
               null
             )}
